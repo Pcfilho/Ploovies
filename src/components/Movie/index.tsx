@@ -4,6 +4,8 @@ import { Container, InfoContainer, Title, GenreTitle } from "./styles";
 import { Image } from "react-native";
 import { Stars } from "../Stars";
 import { moviesApi } from "../../service/moviesApi";
+import { useNavigation } from "@react-navigation/native";
+import Animated from "react-native-reanimated";
 
 interface IMovie {
   adult: boolean;
@@ -106,23 +108,25 @@ const genreTypes = [
 ];
 
 export const Movie = ({ item }: Props) => {
-  const movieImage = moviesApi.getMovieImageW500(item.backdrop_path);
+  const { navigate } = useNavigation();
+  const movieImage = moviesApi.getMovieImageOriginal(item.backdrop_path);
   const getGenreById = (id: number) => {
-    return genreTypes.find(genre => genre.id === id)?.name
+    return genreTypes.find((genre) => genre.id === id)?.name;
   };
 
   return (
-    <Container>
-      <Image
-        source={{ uri: movieImage }}
-        resizeMode="cover"
-        style={{
-          height: '80%',
-          borderRadius: 8,
-        }}
-      />
+    <Container onPress={() => navigate("MovieDetails", { item })}>
+
+        <Image
+          source={{ uri: movieImage }}
+          resizeMode="cover"
+          style={{
+            height: "80%",
+            borderRadius: 8,
+          }}
+        />
       <InfoContainer>
-        <Title>{item.title}</Title>
+        <Title numberOfLines={1} ellipsizeMode="tail">{item.title}</Title>
         <GenreTitle>{getGenreById(item.genre_ids[0])}</GenreTitle>
         <Stars vote_average={item.vote_average} />
       </InfoContainer>
