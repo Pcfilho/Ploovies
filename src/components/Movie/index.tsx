@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Container, InfoContainer, Title, GenreTitle } from "./styles";
 import { Image } from "react-native";
@@ -116,7 +116,6 @@ export const Movie = ({ item }: Props) => {
 
   return (
     <Container onPress={() => navigate("MovieDetails", { item })}>
-
         <Image
           source={{ uri: movieImage }}
           resizeMode="cover"
@@ -133,3 +132,6 @@ export const Movie = ({ item }: Props) => {
     </Container>
   );
 };
+
+
+export const MovieMemo = memo(Movie, (prevProps, nextProps) => Object.is(prevProps, nextProps))

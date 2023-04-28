@@ -8,7 +8,7 @@ export const Container = styled.View`
   padding-top: ${RFValue(20)}px;
 `;
 
-export const Header = styled.View`
+export const Header = styled(Animated.View)`
     flex-direction: row;
     width: 100%;
     padding: ${RFValue(20)}px ${RFValue(20)}px 0;
