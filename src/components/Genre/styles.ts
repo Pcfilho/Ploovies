@@ -6,7 +6,7 @@ interface IProps {
   isSelected: boolean;
 }
 
-export const Container = styled.TouchableOpacity<IProps>`
+export const Container = styled(TouchableOpacity)<IProps>`
   min-width: ${RFValue(64)}px;
   height: ${RFValue(64)}px;
   padding: ${RFValue(5)}px;

@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+interface Action {
+  payload: string;
+  type: string;
+}
+
 const genreSlice = createSlice({
   name: "genre",
   initialState: '',
   reducers: {
-    updateGenre: (_, action) => {
+    updateGenre: (_, action: Action) => {
       if (!action.payload) return ''
       return action.payload
     }
