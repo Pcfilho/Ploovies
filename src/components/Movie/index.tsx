@@ -5,7 +5,7 @@ import { Image } from "react-native";
 import { Stars } from "../Stars";
 import { moviesApi } from "../../service/moviesApi";
 import { useNavigation } from "@react-navigation/native";
-import Animated from "react-native-reanimated";
+import { HomeScreenNavigationProp } from "../../routes/home.routes";
 
 interface IMovie {
   adult: boolean;
@@ -108,7 +108,7 @@ const genreTypes = [
 ];
 
 export const Movie = ({ item }: Props) => {
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<HomeScreenNavigationProp>();
   const movieImage = moviesApi.getMovieImageOriginal(item.backdrop_path);
   const getGenreById = (id: number) => {
     return genreTypes.find((genre) => genre.id === id)?.name;

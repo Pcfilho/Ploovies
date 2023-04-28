@@ -27,10 +27,11 @@ import {
 import { useMovies } from "../../hooks/queries/useMovies";
 import { IMovie } from "../../@types/movie";
 import { useGenres } from "../../hooks/queries/useGenres";
+import { useGenreSelector } from "../../store/reducers/genreReducer";
 
 export const Home = () => {
   const theme = useTheme();
-  const genreSelected = useSelector((storeState) => storeState.genre);
+  const genreSelected = useGenreSelector();
   const { movies } = useMovies();
   const { genres } = useGenres();
   const [isSearching, setIsSearching] = useState(false);

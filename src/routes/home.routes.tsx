@@ -1,10 +1,30 @@
-// App.js
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  CompositeScreenProps,
+  NavigationContainer,
+  RouteProp,
+  ParamListBase,
+} from "@react-navigation/native";
 import { MovieDetails } from "../screens/MovieDetails";
 import { Home } from "../screens/Home";
 import { createStackNavigator } from "@react-navigation/stack";
+import { IMovie } from "../@types/movie";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-const Stack = createStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  MovieDetails: { item: IMovie };
+};
+
+export interface IMovieDetailsParams extends RouteProp<ParamListBase> {
+  params: {
+    item: IMovie;
+  };
+}
+
+export type HomeScreenNavigationProp =
+  NativeStackNavigationProp<RootStackParamList>;
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const HomeRoutes = () => {
   return (
@@ -12,14 +32,11 @@ export const HomeRoutes = () => {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerShown: false
+          headerShown: false,
         }}
       >
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen
-          name="MovieDetails"
-          component={MovieDetails}
-        />
+        <Stack.Screen name="MovieDetails" component={MovieDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );

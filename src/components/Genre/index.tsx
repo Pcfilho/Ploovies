@@ -2,8 +2,8 @@ import React, { memo, useCallback, useEffect, useState } from "react";
 import { Container, Title } from "./styles";
 import { Image } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { updateGenre } from "../../store/reducers/genreReducer";
-import { getIconById, iconTypes } from "./utils/iconTypes";
+import { updateGenre, useGenreSelector } from "../../store/reducers/genreReducer";
+import { getIconById } from "./utils/iconTypes";
 
 interface IGenre {
   id: number;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const Genre = ({ item }: Props) => {
-  const genreSelected = useSelector((storeState) => storeState.genre);
+  const genreSelected = useGenreSelector();
   const dispatch = useDispatch();
   const isSelected = () => genreSelected === String(item.id);
   const [iconSource, setIconSource] = useState("");

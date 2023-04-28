@@ -44,15 +44,16 @@ import { useTheme } from "styled-components/native";
 import { Review } from "../../components/Review";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useMovieDetails } from "../../hooks/queries/useMovieDetails";
+import { IMovieDetailsParams } from "../../routes/home.routes";
 const { height } = Dimensions.get("screen");
 const inputRange = [0, height * 1.5];
 const outputRange = [height * 0.5, height * 0.22];
 
 export const MovieDetails = () => {
   const theme = useTheme();
-  const route = useRoute();
+  const route = useRoute<IMovieDetailsParams>();
   const navigate = useNavigation();      
-  const { movieDetails, reviews, actors } = useMovieDetails(route.params.item.id.toString());
+  const { movieDetails, reviews, actors } = useMovieDetails(route.params.item.id);
 
   const onShare = async () => {
     try {
