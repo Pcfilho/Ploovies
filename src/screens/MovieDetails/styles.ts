@@ -6,43 +6,40 @@ export const Container = styled.View`
   flex: 1;
 `;
 
-export const ImageContainer = styled.View`
-  width: 100%;
-  height: 50%;
-`;
-
 export const Content = styled.ScrollView`
-  width: 100%;
-  height: 100%;
   background-color: ${({ theme }) => theme.colors.background_primary};
-  margin-top: -80px;
-  border-radius: 24px;
-  padding: 20px;
+  margin-top: -${RFValue(80)}px;
+  border-radius: ${RFValue(24)}px;
+  padding: ${RFValue(20)}px;
 `;
-
 
 export const Header = styled.View`
-  margin-top: 20px;
+  margin-top: ${RFValue(20)}px;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const HeaderWrapper = styled.View`
+  gap: ${RFValue(8)}px;
+  width: 60%;
 `;
 
 export const Title = styled.Text`
     color: ${({ theme }) => theme.colors.main_text};
     font-size: ${RFValue(18)}px;
     font-family: ${({ theme }) => theme.fonts.primary_900};
-    text-align: center;
 `;
 
 export const RatingContainer = styled.View` 
   flex-direction: row;
-  padding: 8px;
+  padding: ${RFValue(8)}px;
   background-color: ${({ theme }) => theme.colors.main};
-  border-radius: 8px;
+  border-radius: ${RFValue(8)}px;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: ${RFValue(8)}px;
 `;
 
 export const Rating = styled.Text`
@@ -57,7 +54,7 @@ export const Star = styled(MaterialIcons)`
 `;
 
 export const OverviewContainer = styled.View`
-  margin-top: 18px;
+  margin-top: ${RFValue(18)}px;
 `;
 
 export const OverviewText = styled.Text`
@@ -67,14 +64,61 @@ export const OverviewText = styled.Text`
 `;
 
 export const CompaniesContainer = styled.View`
-  height: 200px;
-  width: 100%;
-  margin-top: 32px;
+  margin-top: ${RFValue(32)}px;
 `;
 
 export const CompaniesTitle = styled.Text`
   color: ${({ theme }) => theme.colors.main_text};
   font-size: ${RFValue(12)}px;
   font-family: ${({ theme }) => theme.fonts.primary_900};
-  margin-bottom: 16px;
+  margin-bottom: ${RFValue(16)}px;
+`;
+
+export const ActorsContainer = styled.View`
+  margin-top: ${RFValue(32)}px;
+`;
+
+export const ActorsTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.main_text};
+  font-size: ${RFValue(12)}px;
+  font-family: ${({ theme }) => theme.fonts.primary_900};
+  margin-bottom: ${RFValue(16)}px;
+`;
+
+export const ButtonsContainer = styled.View`
+  position: absolute;
+  top: ${RFValue(50)}px;
+
+  flex-direction: row;
+  width: 100%;
+  padding: 0 ${RFValue(20)}px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const FavoriteButton = styled(MaterialIcons)`
+  color: ${({ theme }) => theme.colors.background_primary};
+`;
+
+export const ShareButton = styled(MaterialIcons)`
+  color: ${({ theme }) => theme.colors.background_primary};
+`;
+
+export const LeftButtonsContainer = styled.View`
+
+`
+
+export const RightButtonsContainer = styled.View`
+  flex-direction: row;
+  gap: ${RFValue(8)}px;
+`
+
+export const BackButton = styled(MaterialIcons)`
+  color: ${({ theme }) => theme.colors.background_primary};
+`
+
+export const ScreenFooter = styled.View`
+  height: ${RFValue(1)}px;
+  padding: ${RFValue(8)}px;
+  margin-bottom: ${RFValue(18)}px;
 `;
