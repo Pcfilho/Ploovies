@@ -23,5 +23,13 @@ export const moviesApi = {
   getGenresList: (params: any = {}) => {
     const url = `/genre/movie/list`
     return axiosClient.get(url, { params })
+  },
+  getCreditsByMovieId: (id: number) => {
+    const url = `movie/${id}/credits`;
+    return axiosClient.get(url);
+  },
+  getReviewsByMovieId: (id: number, params: any = {}) => {
+    const url = `/movie/${id}/reviews`
+    return axiosClient.get(url, params);
   }
 }
