@@ -14,14 +14,16 @@ export const Company = ({ imageEndpoint, companyName }: Props) => {
 
   return (
     <Container>
-      <Image 
-        source={imageSource}
-        contentFit="contain"
-        style={{
-          height: 32,
-          borderRadius: 8,
-        }}
-      />
+      {imageSource ? (
+        <Image
+          source={imageSource}
+          contentFit="contain"
+          style={{
+            height: 32,
+            borderRadius: 8,
+          }}
+        />
+      ) : null}
       <CompanyTitle>{companyName}</CompanyTitle>
     </Container>
   );
