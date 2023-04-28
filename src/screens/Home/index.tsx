@@ -21,6 +21,15 @@ import { FlashList } from "@shopify/flash-list";
 import { moviesApi } from "../../service/moviesApi";
 import { FlatList } from "react-native";
 import { TouchableOpacity } from "react-native";
+import {
+  Extrapolation,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import { RFValue } from "react-native-responsive-fontsize";
 
 interface IGenre {
   id: number;
@@ -53,6 +62,42 @@ export const Home = () => {
     [] as IMovie[]
   );
   const [isSearching, setIsSearching] = useState(false);
+  const [searchingText, setSearchingText] = useState("");
+
+  const titleAnimatedWidth = useSharedValue(0);
+
+  const titleAnimatedStyle = useAnimatedStyle(() => {
+    const interpolatedWidth = interpolate(
+      titleAnimatedWidth.value,
+      [0, 1],
+      [60, 0]
+    );
+
+    const interpolateOpacity = interpolate(
+      titleAnimatedWidth.value,
+      [0, 1],
+      [1, 0],
+      { extrapolateRight: Extrapolation.CLAMP }
+    );
+    return {
+      width: withTiming(`${interpolatedWidth}%`, {
+        duration: 1000,
+      }),
+      opacity: withTiming(interpolateOpacity, { duration: 1500 }),
+    };
+  });
+
+  useEffect(() => {
+    if (searchingText) {
+      const filteredMovies = movies.filter((movie) =>
+        movie.title.includes(searchingText)
+      );
+      setMoviesFiltered(filteredMovies);
+      console.log(filteredMovies);
+    } else {
+      setMoviesFiltered(movies);
+    }
+  }, [searchingText]);
 
   useEffect(() => {
     const getFilteredMovies = () => {
@@ -88,26 +133,48 @@ export const Home = () => {
   return (
     <Container>
       <Header>
-        <Title>Ploovies</Title>
+        <Title
+          style={[titleAnimatedStyle]}
+          numberOfLines={1}
+          ellipsizeMode="clip"
+        >
+          Ploovies
+        </Title>
         {isSearching ? (
           <SearchWrapper>
-            <Input placeholder="Procurar filme" />
-            <TouchableOpacity onPress={() => setIsSearching(false)}>
-              <Feather
-                name="x"
-                size={18}
-                color={theme.colors.text_details}
-              />
+            <Feather
+              name="search"
+              size={24}
+              color={theme.colors.text_details}
+            />
+            <Input
+              placeholder="Procurar filme"
+              onChangeText={setSearchingText}
+              value={searchingText}
+            />
+            <TouchableOpacity
+              onPress={() => {
+                titleAnimatedWidth.value = 0;
+                setIsSearching(false);
+                setSearchingText("");
+              }}
+            >
+              <Feather name="x" size={18} color={theme.colors.text_details} />
             </TouchableOpacity>
           </SearchWrapper>
         ) : (
-            <IconContainer onPress={() => setIsSearching(true)}>
-              <Feather
-                name="search"
-                size={24}
-                color={theme.colors.text_details}
-              />
-            </IconContainer>
+          <IconContainer
+            onPress={() => {
+              titleAnimatedWidth.value = 1;
+              setIsSearching(true);
+            }}
+          >
+            <Feather
+              name="search"
+              size={24}
+              color={theme.colors.text_details}
+            />
+          </IconContainer>
         )}
       </Header>
       <Content>
@@ -127,6 +194,9 @@ export const Home = () => {
             data={moviesFiltered}
             showsVerticalScrollIndicator={false}
             numColumns={2}
+            style={{
+              width: "100%",
+            }}
           />
         </MoviesContainer>
       </Content>
