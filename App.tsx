@@ -14,6 +14,7 @@ import { View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 import { MovieDetails } from "./src/screens/MovieDetails";
+import { HomeRoutes } from "./src/routes/home.routes";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,8 +39,8 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-          <StatusBar style="auto" />
-          <MovieDetails />
+          <StatusBar style="dark" translucent />
+          <HomeRoutes />
         </View>
       </ThemeProvider>
     </Provider>
