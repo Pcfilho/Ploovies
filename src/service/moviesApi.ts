@@ -16,7 +16,7 @@ export const moviesApi = {
   },
   getMovieImageOriginal: (imagePath: string) => `${imageOriginalBaseUrl}${imagePath}`,
   getMovieImageW500: (imagePath: string) => `${imageW500BaseUrl}${imagePath}`,
-  getMovieById: (id: string, params: any = {}) => {
+  getMovieById: (id: number, params: any = {}) => {
     const url = `movie/${id}`;
     return axiosClient.get(url, { params })
   },
