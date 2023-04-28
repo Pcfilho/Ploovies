@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Container,
   Header,
@@ -21,7 +21,6 @@ import {
   BackButton,
   ScreenFooter,
 } from "./styles";
-import { moviesApi } from "../../service/moviesApi";
 import {
   Dimensions,
   FlatList,
@@ -44,58 +43,7 @@ import Animated, {
 import { useTheme } from "styled-components/native";
 import { Review } from "../../components/Review";
 import { useRoute, useNavigation } from "@react-navigation/native";
-interface IActor {
-  adult: boolean;
-  gender: number;
-  id: number;
-  known_for_department: string;
-  name: string;
-  original_name: string;
-  popularity: number;
-  profile_path: string;
-  cast_id: number;
-  character: string;
-  credit_id: string;
-  order: number;
-}
-
-interface IReview {
-  author: string;
-  author_details: {
-    name: string;
-    username: string;
-    avatar_path: string;
-    rating: number;
-  };
-  content: string;
-  created_at: string;
-  id: string;
-  updated_at: string;
-  url: string;
-}
-
-interface ICompany {
-  id: number;
-  logo_path: string;
-  name: string;
-  origin_country: string;
-}
-interface IMovieData {
-  backdrop_path: string;
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  production_companies: ICompany[];
-  release_date: string;
-  title: string;
-  vote_average: number;
-}
-
-const blurhash =
-  "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
-
+import { useMovieDetails } from "../../hooks/queries/useMovieDetails";
 const { height } = Dimensions.get("screen");
 const inputRange = [0, height * 1.5];
 const outputRange = [height * 0.5, height * 0.22];
@@ -103,19 +51,15 @@ const outputRange = [height * 0.5, height * 0.22];
 export const MovieDetails = () => {
   const theme = useTheme();
   const route = useRoute();
-  const navigate = useNavigation();
-  const [movieData, setMovieData] = useState<IMovieData>({} as IMovieData);
-  const [imageSource, setImageSource] = useState("");
-  const realeseDate = new Date(movieData.release_date).toLocaleDateString();
-  const [actors, setActors] = useState<IActor[]>([]);
-  const [reviews, setReviews] = useState<IReview[]>([]);
+  const navigate = useNavigation();      
+  const { movieDetails, reviews, actors } = useMovieDetails(route.params.item.id.toString());
 
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: imageSource,
-        url: imageSource,
-        title: `Compartilhar poster de ${movieData.title}`,
+        message: movieDetails?.imageSource,
+        url: movieDetails?.imageSource || "",
+        title: `Compartilhar poster de ${movieDetails?.title}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -148,50 +92,6 @@ export const MovieDetails = () => {
     };
   });
 
-  useEffect(() => {
-    const getActorsList = async () => {
-      try {
-        const { data } = await moviesApi.getCreditsByMovieId(movieData.id);
-        const filteredActors = data.cast.filter(
-          (actor: IActor) => actor["known_for_department"] === "Acting"
-        );
-
-        setActors(filteredActors);
-      } catch (error) {}
-    };
-    const getReviewsList = async () => {
-      try {
-        const { data } = await moviesApi.getReviewsByMovieId(movieData.id);
-        setReviews(data.results);
-      } catch (error) {}
-    };
-
-    setImageSource(
-      movieData?.backdrop_path
-        ? moviesApi.getMovieImageOriginal(movieData.backdrop_path)
-        : ""
-    );
-    if (movieData.id) {
-      getReviewsList();
-      getActorsList();
-    }
-  }, [movieData]);
-
-  useEffect(() => {
-    const getMovieData = async () => {
-      try {
-        const { data } = await moviesApi.getMovieById(
-          route.params.item.id.toString()
-        );
-        setMovieData(data);
-      } catch (error) {}
-    };
-
-    getMovieData();
-  }, []);
-
-  if (!movieData) return null;
-
   return (
     <Container>
       <StatusBar
@@ -202,9 +102,9 @@ export const MovieDetails = () => {
       <Animated.View
         style={[imageContainerHeightStyleAnimation, styles.imageContainer]}
       >
-        {imageSource ? (
+        {movieDetails?.imageSource ? (
           <Animated.Image
-            source={{ uri: imageSource }}
+            source={{ uri: movieDetails?.imageSource }}
             resizeMode="cover"
             style={{
               height: "100%",
@@ -243,24 +143,24 @@ export const MovieDetails = () => {
       >
         <Header>
           <HeaderWrapper>
-            <Title>{movieData.title}</Title>
-            <OverviewText>{realeseDate}</OverviewText>
+            <Title>{movieDetails?.title}</Title>
+            <OverviewText>{movieDetails?.realeseDate}</OverviewText>
           </HeaderWrapper>
 
           <RatingContainer>
             <Star name="star" size={12} />
-            <Rating>{movieData.vote_average?.toFixed(1)}</Rating>
+            <Rating>{movieDetails?.vote_average?.toFixed(1)}</Rating>
           </RatingContainer>
         </Header>
         <OverviewContainer>
-          <OverviewText>{movieData.overview}</OverviewText>
+          <OverviewText>{movieDetails?.overview}</OverviewText>
         </OverviewContainer>
 
         <CompaniesContainer>
           <CompaniesTitle>Empresas produtoras</CompaniesTitle>
           <FlatList
             keyExtractor={(item) => String(item.id)}
-            data={movieData.production_companies}
+            data={movieDetails?.production_companies}
             renderItem={({ item }) => (
               <Company companyName={item.name} imageEndpoint={item.logo_path} />
             )}

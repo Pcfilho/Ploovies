@@ -30,34 +30,19 @@ import {
   withTiming,
 } from "react-native-reanimated";
 import { RFValue } from "react-native-responsive-fontsize";
+import { useQuery } from "@tanstack/react-query";
+import { useMovies } from "../../hooks/queries/useMovies";
+import { IMovie } from "../../@types/movie";
+import { useGenres } from "../../hooks/queries/useGenres";
 
-interface IGenre {
-  id: number;
-  name: string;
-}
 
-interface IMovie {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
 
 export const Home = () => {
   const theme = useTheme();
   const genreSelected = useSelector((storeState) => storeState.genre);
-  const [genres, setGenres] = useState<IGenre[]>([] as IGenre[]);
-  const [movies, setMovies] = useState<IMovie[]>([] as IMovie[]);
+  const { movies } = useMovies();
+  const { genres } = useGenres();
+
   const [moviesFiltered, setMoviesFiltered] = useState<IMovie[]>(
     [] as IMovie[]
   );
@@ -89,46 +74,26 @@ export const Home = () => {
 
   useEffect(() => {
     if (searchingText) {
-      const filteredMovies = movies.filter((movie) =>
+      const filteredMovies = movies?.filter((movie) =>
         movie.title.includes(searchingText)
       );
-      setMoviesFiltered(filteredMovies);
-      console.log(filteredMovies);
+      setMoviesFiltered(filteredMovies || []);
     } else {
-      setMoviesFiltered(movies);
+      setMoviesFiltered(movies || []);
     }
   }, [searchingText]);
 
   useEffect(() => {
     const getFilteredMovies = () => {
-      if (genreSelected) {
-        return movies.filter((movie) =>
+      if (genreSelected && movies) {
+        return movies?.filter((movie) =>
           movie.genre_ids.includes(Number(genreSelected))
         );
       }
-      return movies;
+      return movies || [];
     };
     setMoviesFiltered(getFilteredMovies());
   }, [genreSelected, movies]);
-
-  useEffect(() => {
-    const getGenresList = async () => {
-      const { data } = await moviesApi.getGenresList();
-      setGenres([...data.genres]);
-    };
-
-    const getMoviesList = async () => {
-      const { data } = await moviesApi.getMoviesList("popular");
-      setMovies([...data.results]);
-    };
-
-    getGenresList();
-    getMoviesList();
-    return () => {
-      getGenresList();
-      getMoviesList();
-    };
-  }, []);
 
   return (
     <Container>
