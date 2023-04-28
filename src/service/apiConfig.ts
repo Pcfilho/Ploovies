@@ -6,3 +6,5 @@ export const apiConfig = {
   originalImage: (imagePath: string) => `https://image.tmdb.org/t/p/original/${imagePath}`,
   w500Image: (imagePath: string) => `https://image.tmdb.org/t/p/w500/${imagePath}`,
 }
+
+export const imageBaseUrl = 'https://image.tmdb.org/t/p/w500/'
