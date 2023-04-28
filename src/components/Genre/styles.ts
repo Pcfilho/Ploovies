@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const Container = styled.TouchableOpacity<IProps>`
-  width: ${RFValue(64)}px;
+  min-width: ${RFValue(64)}px;
   height: ${RFValue(64)}px;
   padding: ${RFValue(5)}px;
   margin: ${RFValue(5)}px;
