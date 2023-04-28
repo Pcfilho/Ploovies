@@ -18,7 +18,7 @@ export const Header = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const HeaderWrapper = styled.View`
