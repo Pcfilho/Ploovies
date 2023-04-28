@@ -106,7 +106,7 @@ const genreTypes = [
 ];
 
 export const Movie = ({ item }: Props) => {
-  const movieImage = moviesApi.getMovieImage(item.backdrop_path);
+  const movieImage = moviesApi.getMovieImageW500(item.backdrop_path);
   const getGenreById = (id: number) => {
     return genreTypes.find(genre => genre.id === id)?.name
   };
@@ -117,7 +117,7 @@ export const Movie = ({ item }: Props) => {
         source={{ uri: movieImage }}
         resizeMode="cover"
         style={{
-          height: '70%',
+          height: '80%',
           borderRadius: 8,
         }}
       />

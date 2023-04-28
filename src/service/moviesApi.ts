@@ -1,6 +1,5 @@
-import { AxiosRequestConfig } from "axios";
 import { axiosClient } from "./axiosClient";
-import { imageBaseUrl } from "./apiConfig";
+import { imageOriginalBaseUrl, imageW500BaseUrl } from "./apiConfig";
 
 export const MovieTypes = {
   upcoming: 'upcoming',
@@ -15,7 +14,8 @@ export const moviesApi = {
     const url = `movie/${MovieTypes[type]}`;
     return axiosClient.get(url, { params })
   },
-  getMovieImage: (imagePath: string) => `${imageBaseUrl}${imagePath}`,
+  getMovieImageOriginal: (imagePath: string) => `${imageOriginalBaseUrl}${imagePath}`,
+  getMovieImageW500: (imagePath: string) => `${imageW500BaseUrl}${imagePath}`,
   getMovieById: (id: string, params: any = {}) => {
     const url = `movie/${id}`;
     return axiosClient.get(url, { params })

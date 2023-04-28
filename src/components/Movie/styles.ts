@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.TouchableOpacity`
-  height: ${RFValue(200)}px;
+  height: ${RFValue(300)}px;
   width: 50%;
   padding: ${RFValue(20)}px;
   justify-content: center;
@@ -15,7 +15,6 @@ export const InfoContainer = styled.View`
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_700};
   font-size: ${RFValue(12)}px;
-  text-align: center;
   color: ${({ theme }) => theme.colors.main_text};
 `;
 

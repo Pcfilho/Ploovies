@@ -13,6 +13,7 @@ import { Home } from "./src/screens/Home";
 import { View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
+import { MovieDetails } from "./src/screens/MovieDetails";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,7 +39,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
           <StatusBar style="auto" />
-          <Home />
+          <MovieDetails />
         </View>
       </ThemeProvider>
     </Provider>

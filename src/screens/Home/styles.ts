@@ -1,4 +1,4 @@
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
@@ -8,17 +8,19 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
+    flex-direction: row;
     width: 100%;
-    padding: ${RFValue(20)}px ${RFValue(20)}px ${RFValue(10)}px;
-    justify-content: center;
-    align-items: flex-start;
+    padding: ${RFValue(20)}px ${RFValue(20)}px 0;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: ${RFValue(15)}px;
 `;
 
 export const Title = styled.Text`
     color: ${({ theme }) => theme.colors.main};
     font-size: ${RFValue(32)}px;
     font-family: ${({ theme }) => theme.fonts.primary_900};
-    margin-bottom: ${RFValue(15)}px;
+    text-align: center;
 `;
 
 export const SubTitle = styled.Text`
@@ -28,6 +30,7 @@ export const SubTitle = styled.Text`
 `;
 
 export const SearchWrapper = styled.View`
+    width: 60%;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -39,12 +42,12 @@ export const SearchWrapper = styled.View`
     border-radius: ${RFValue(10)}px;
 `;
 
-export const IconContainer = styled.View`
-  padding: ${RFValue(5)}px;
+export const IconContainer = styled.TouchableOpacity`
+  align-self: flex-end;
 `;
 
 export const Input = styled.TextInput`
-  width: 100%;
+  flex: 1;
   margin-left: ${RFValue(5)}px;
   font-family: ${({ theme }) => theme.fonts.primary_700};
   font-size: ${RFValue(14)}px;
@@ -59,7 +62,6 @@ export const Content = styled.View`
 
 export const GenreContainer = styled.View`
   width: 100%;
-  margin-top: ${RFValue(10)}px;
 `;
 
 export const MoviesContainer = styled.View`
