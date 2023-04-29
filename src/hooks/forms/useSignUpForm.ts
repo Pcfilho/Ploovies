@@ -9,7 +9,7 @@ const signUpValidationSchema = z
       .nonempty({ message: "Email é necessário" })
       .email({ message: "Insira email válido" }),
     password: z.string().min(6, { message: "Senha é necessária" }),
-    name: z.string().nonempty({ message: "Email é necessário" }),
+    name: z.string().nonempty({ message: "Nome é necessário" }),
     confirmPassword: z.string().min(6, { message: "Senha é necessária" }),
   })
   .refine(
@@ -25,6 +25,12 @@ export interface IUserSignUp extends z.infer<typeof signUpValidationSchema> {
 
 export const useSignUpForm = () => {
   return useForm<IUserSignUp>({
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+      name: "",
+    },
     resolver: zodResolver(signUpValidationSchema),
   });
 }
