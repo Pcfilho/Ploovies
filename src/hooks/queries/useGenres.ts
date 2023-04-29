@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { moviesApi } from "../../service/moviesApi";
+import { moviesApi } from "../../service/axios/moviesApi";
 import { IGenre } from "../../@types/genre";
 
 const fetchGenresList = async () => {
