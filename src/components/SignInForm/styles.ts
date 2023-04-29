@@ -73,12 +73,3 @@ export const RegisterButton = styled.Text`
 export const RegisterContainer = styled.View`
   flex: 1;
 `
-
-export const ErrorMessage = styled.Text`
-  margin: ${RFValue(4)}px 0;
-  font-family: ${({ theme }) => theme.fonts.primary_400};
-  font-size: ${RFValue(12)}px;
-  
-  text-align: center;
-  color: ${({ theme }) => theme.colors.error};
-`;

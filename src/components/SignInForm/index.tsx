@@ -6,7 +6,6 @@ import {
   ButtonsContainer,
   ContentHeader,
   ContentHeaderTitle,
-  ErrorMessage,
   InputsContainer,
   LoginContainer,
   RegisterButton,
@@ -17,6 +16,7 @@ import { Loading } from "../Loading";
 import InputController from "../InputController";
 import { useSignIn } from "../../hooks/queries/useSignIn";
 import { IUserSignIn, useSignInForm } from "../../hooks/forms/useSignInForm";
+import { ErrorMessage } from "../ErrorMessage";
 
 interface Props {
   handleChangeScreens: () => void;
@@ -51,9 +51,7 @@ export const SignInForm = ({ handleChangeScreens }: Props) => {
           placeHolder="Senha"
         />
 
-        {mutation.isError ? (
-          <ErrorMessage>Não foi possível realizar o login.</ErrorMessage>
-        ) : null}
+        { mutation.isError ? <ErrorMessage message={"Não foi possível realizar o login."} /> : null}
       </InputsContainer>
 
       <ButtonsContainer>

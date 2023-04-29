@@ -7,13 +7,13 @@ import {
   ButtonTitle,
   RegisterButton,
   RegisterContainer,
-  RegisterErrorMessage,
 } from "./styles";
 
 import InputController from "../InputController";
 import { useSignUp } from "../../hooks/queries/useSignUp";
 import { Loading } from "../Loading";
 import { IUserSignUp, useSignUpForm } from "../../hooks/forms/useSignUpForm";
+import { ErrorMessage } from "../ErrorMessage";
 
 interface Props {
   handleChangeScreens: () => void;
@@ -89,11 +89,3 @@ export const SignUpForm = ({ handleChangeScreens }: Props) => {
     </RegisterContainer>
   );
 };
-
-interface ErrorProps {
-  message: string | undefined;
-}
-
-const ErrorMessage = ({
-  message,
-}: ErrorProps) => message ? <RegisterErrorMessage>{message}</RegisterErrorMessage> : null;
