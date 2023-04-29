@@ -1,26 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import { moviesApi } from "../../service/moviesApi";
+import { moviesApi } from "../../service/axios/moviesApi";
 import { IMovieData } from "../../@types/movieDetails";
 import { IActor } from "../../@types/actor";
 import { IReview } from "../../@types/review";
 
-const fetchActorsList = async (id: number) => {
-    const { data } = await moviesApi.getCreditsByMovieId(id);
-    const filteredActors = data.cast.filter(
-      (actor: IActor) => actor["known_for_department"] === "Acting"
-    );
-    return filteredActors;
-};
-const fetchReviewsList = async (id : number) => {
-    const { data } = await moviesApi.getReviewsByMovieId(id);
-    return data.results;
+  const fetchActorsList = async (id: number) => {
+  const { data } = await moviesApi.getCreditsByMovieId(id);
+  const filteredActors = data.cast.filter(
+    (actor: IActor) => actor["known_for_department"] === "Acting"
+  );
+  return filteredActors;
+  };
+const fetchReviewsList = async (id: number) => {
+  const { data } = await moviesApi.getReviewsByMovieId(id);
+  return data.results;
 };
 
-const fetchMovieDetailsList = async (id : number) => {
+const fetchMovieDetailsList = async (id: number) => {
   const { data } = await moviesApi.getMovieById(id);
   const imageSource = moviesApi.getMovieImageOriginal(data.backdrop_path) || "";
-  const realeseDate = new Date(data?.release_date || '').toLocaleDateString();
-  return {...data, realeseDate, imageSource};
+  const realeseDate = new Date(data?.release_date || "").toLocaleDateString();
+  return { ...data, realeseDate, imageSource };
 };
 
 export const useMovieDetails = (id: number) => {
@@ -32,6 +32,7 @@ export const useMovieDetails = (id: number) => {
   } = useQuery<IMovieData>({
     queryKey: [`@movieDetails/${id}`],
     queryFn: () => fetchMovieDetailsList(id),
+    enabled: !!id,
   });
 
   const {
@@ -42,7 +43,7 @@ export const useMovieDetails = (id: number) => {
   } = useQuery<IReview[]>({
     queryKey: [`@movieReviews/${id}`],
     queryFn: () => fetchReviewsList(id),
-    enabled: !!movieDetails?.id
+    enabled: !!id,
   });
 
   const {
@@ -53,9 +54,8 @@ export const useMovieDetails = (id: number) => {
   } = useQuery<IActor[]>({
     queryKey: [`@movieActors/${id}`],
     queryFn: () => fetchActorsList(id),
-    enabled: !!movieDetails?.id
+    enabled: !!id,
   });
-
 
   return {
     isLoadingMovieDetails,
@@ -71,6 +71,6 @@ export const useMovieDetails = (id: number) => {
     isLoadingActors,
     isErrorActors,
     actors,
-    errorActors
-  }
-}
+    errorActors,
+  };
+};
