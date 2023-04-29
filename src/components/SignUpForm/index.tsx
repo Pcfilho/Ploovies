@@ -14,6 +14,7 @@ import { useSignUp } from "../../hooks/queries/useSignUp";
 import { Loading } from "../Loading";
 import { IUserSignUp, useSignUpForm } from "../../hooks/forms/useSignUpForm";
 import { ErrorMessage } from "../ErrorMessage";
+import InputPasswordController from "../InputPasswordController";
 
 interface Props {
   handleChangeScreens: () => void;
@@ -37,7 +38,9 @@ export const SignUpForm = ({ handleChangeScreens }: Props) => {
   }
 
   return (
-    <RegisterContainer>
+    <RegisterContainer
+      showsVerticalScrollIndicator={false}
+    >
       <ContentHeader>
         <ContentHeaderTitle>Cadastro</ContentHeaderTitle>
         {mutation.isLoading ? (
@@ -65,14 +68,14 @@ export const SignUpForm = ({ handleChangeScreens }: Props) => {
           placeHolder="Email"
         />
 
-        <InputController
+        <InputPasswordController
           control={control}
           iconName="lock"
           name="password"
           placeHolder="Senha"
         />
 
-        <InputController
+        <InputPasswordController
           control={control}
           iconName="lock"
           name="confirmPassword"

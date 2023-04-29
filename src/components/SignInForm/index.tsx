@@ -17,6 +17,7 @@ import InputController from "../InputController";
 import { useSignIn } from "../../hooks/queries/useSignIn";
 import { IUserSignIn, useSignInForm } from "../../hooks/forms/useSignInForm";
 import { ErrorMessage } from "../ErrorMessage";
+import InputPasswordController from "../InputPasswordController";
 
 interface Props {
   handleChangeScreens: () => void;
@@ -44,7 +45,7 @@ export const SignInForm = ({ handleChangeScreens }: Props) => {
           name="email"
           placeHolder="Email"
         />
-        <InputController
+        <InputPasswordController
           control={control}
           iconName="lock"
           name="password"
