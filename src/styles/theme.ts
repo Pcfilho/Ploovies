@@ -6,6 +6,7 @@ export default {
       text_details: '#AEAEB3',
       title: '#47474D',
       main: '#6759C0',
+      error: '#DC1637',
   },
   
   fonts: {
