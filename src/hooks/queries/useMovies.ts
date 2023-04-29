@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { IMovie } from "../../@types/movie";
-import { moviesApi } from "../../service/moviesApi";
+import { moviesApi } from "../../service/axios/moviesApi";
 
 const fetchMoviesList = async () => {
   const { data } = await moviesApi.getMoviesList("popular");
