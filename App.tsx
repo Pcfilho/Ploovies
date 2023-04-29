@@ -12,11 +12,11 @@ import {
 import { AppState, Platform, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
-import { HomeRoutes } from "./src/routes/home.routes";
 import NetInfo from "@react-native-community/netinfo";
 import { QueryClient, QueryClientProvider, onlineManager } from "@tanstack/react-query";
 import type { AppStateStatus } from "react-native";
 import { focusManager } from "@tanstack/react-query";
+import { Routes } from "./src/routes";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,7 +63,7 @@ export default function App() {
         <ThemeProvider theme={theme}>
           <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
             <StatusBar style="dark" translucent />
-            <HomeRoutes />
+            <Routes />
           </View>
         </ThemeProvider>
       </QueryClientProvider>
