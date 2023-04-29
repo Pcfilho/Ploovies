@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import {
   Icon,
@@ -7,6 +7,8 @@ import {
   InputText,
   Container,
   ErrorMessage,
+  PasswordIcon,
+  PasswordIconButton,
 } from "./styles";
 import { useTheme } from "styled-components";
 
@@ -15,7 +17,6 @@ interface Props {
   name: string;
   placeHolder: string;
   iconName: string;
-  isPassword?: boolean;
 }
 
 export default function InputController({
@@ -23,34 +24,38 @@ export default function InputController({
   name,
   placeHolder,
   iconName,
-  isPassword = false,
 }: Props) {
   const theme = useTheme();
+
   return (
-      <Controller
-        control={control}
-        render={({ field: { value, onChange }, formState: { isSubmitted, errors } }) => {
-          console.log(errors);
-          const errorMessage = errors[name]?.message?.toString() || "";
-          return (
-            <Container>
-              <Input>
-                <IconContainer>
-                  <Icon name={iconName} size={24} color={theme.colors.main} />
-                </IconContainer>
-                <InputText
-                  placeholder={placeHolder}
-                  value={value}
-                  onChangeText={onChange}
-                />
-              </Input>
-              {errorMessage && isSubmitted ? (
-                <ErrorMessage>{errorMessage}</ErrorMessage>
-              ) : null}
-            </Container>
-          );
-        }}
-        name={name}
-      />
+    <Controller
+      control={control}
+      render={({
+        field: { value, onChange },
+        formState: { isSubmitted, errors },
+      }) => {
+        console.log(errors);
+        const errorMessage = errors[name]?.message?.toString() || "";
+        return (
+          <Container>
+            <Input>
+              <IconContainer>
+                <Icon name={iconName} size={24} color={theme.colors.main} />
+              </IconContainer>
+              <InputText
+                placeholder={placeHolder}
+                value={value}
+                onChangeText={onChange}
+                cursorColor={theme.colors.main}
+              />
+            </Input>
+            {errorMessage && isSubmitted ? (
+              <ErrorMessage>{errorMessage}</ErrorMessage>
+            ) : null}
+          </Container>
+        );
+      }}
+      name={name}
+    />
   );
 }

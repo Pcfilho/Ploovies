@@ -1,6 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Feather } from '@expo/vector-icons';
+
 
 export const Container = styled.View``;
 
@@ -13,8 +14,6 @@ export const Input = styled.View`
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;
 
-export const IconContainer = styled.View``;
-
 export const InputText = styled.TextInput`
   flex: 1;
   margin-left: ${RFValue(12)}px;
@@ -22,6 +21,11 @@ export const InputText = styled.TextInput`
   font-size: ${RFValue(14)}px;
   
   color: ${({ theme }) => theme.colors.main_text};
+`;
+
+export const IconContainer = styled.View`
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Icon = styled(MaterialIcons)``;
@@ -34,3 +38,10 @@ export const ErrorMessage = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.colors.error};
 `;
+
+export const PasswordIconButton = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PasswordIcon = styled(Feather)``;
