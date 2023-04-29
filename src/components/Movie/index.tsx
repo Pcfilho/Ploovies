@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { Container, InfoContainer, Title, GenreTitle } from "./styles";
 import { Image } from "react-native";
 import { Stars } from "../Stars";
-import { moviesApi } from "../../service/moviesApi";
+import { moviesApi } from "../../service/axios/moviesApi";
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreenNavigationProp } from "../../routes/home.routes";
 

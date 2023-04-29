@@ -29,6 +29,7 @@ import {
   TouchableOpacity,
   Share,
   Alert,
+  Image,
 } from "react-native";
 import { Company } from "../../components/Company";
 import { Actor } from "../../components/Actor";
@@ -79,7 +80,6 @@ export const MovieDetails = () => {
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
-    console.log(event.contentOffset.y);
   });
 
   const imageContainerHeightStyleAnimation = useAnimatedStyle(() => {
@@ -104,7 +104,7 @@ export const MovieDetails = () => {
         style={[imageContainerHeightStyleAnimation, styles.imageContainer]}
       >
         {movieDetails?.imageSource ? (
-          <Animated.Image
+          <Image
             source={{ uri: movieDetails?.imageSource }}
             resizeMode="cover"
             style={{
@@ -116,7 +116,7 @@ export const MovieDetails = () => {
         <ButtonsContainer>
           <LeftButtonsContainer>
             <TouchableOpacity onPress={() => { navigate.goBack() }}>
-              <BackButton name="chevron-left" size={28} />
+              <BackButton name="chevron-left" size={32} />
             </TouchableOpacity>
           </LeftButtonsContainer>
           <RightButtonsContainer>

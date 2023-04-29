@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Container, CompanyTitle } from "./styles";
-import { moviesApi } from "../../service/moviesApi";
-import { Image } from "expo-image";
+import { moviesApi } from "../../service/axios/moviesApi";
+import { Image } from "react-native";
 
 interface Props {
   imageEndpoint: string;
@@ -16,8 +16,8 @@ export const Company = ({ imageEndpoint, companyName }: Props) => {
     <Container>
       {imageSource ? (
         <Image
-          source={imageSource}
-          contentFit="contain"
+          source={{ uri: imageSource }}
+          resizeMode="contain"
           style={{
             height: 32,
             borderRadius: 8,

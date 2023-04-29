@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Container, GenreTitle, InfoContainer, Title } from './styles';
-import { moviesApi } from '../../service/moviesApi';
+import { moviesApi } from '../../service/axios/moviesApi';
 import { Image } from 'react-native';
 
 interface IProps {
