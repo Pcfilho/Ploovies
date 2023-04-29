@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "449212213059",
+    "project_id": "ploovies",
+    "storage_bucket": "ploovies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449212213059:android:675a1ee45b5c1399b4f1f6",
+        "android_client_info": {
+          "package_name": "com.pcfilho.Ploovies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449212213059-07aadi6u71qopmaro2l3aaceq89falrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCLxvmfhgQf3-TOgtVptENbF-0Ng2DjHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449212213059-07aadi6u71qopmaro2l3aaceq89falrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
