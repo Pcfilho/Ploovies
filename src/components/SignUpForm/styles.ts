@@ -3,6 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 export const RegisterContainer = styled.ScrollView`
   flex: 1;
+  height: 100%;
 `
 
 export const InputsContainer = styled.View`
