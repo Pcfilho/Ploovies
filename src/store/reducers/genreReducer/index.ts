@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { useSelector } from "react-redux";
-import { IGenre } from "../../../@types/genre";
 
 interface Action {
   payload: string;
