@@ -28,16 +28,14 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export const HomeRoutes = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="MovieDetails" component={MovieDetails} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="MovieDetails" component={MovieDetails} />
+    </Stack.Navigator>
   );
 };
