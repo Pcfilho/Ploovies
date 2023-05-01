@@ -10,20 +10,24 @@ import {
 } from "./styles";
 
 import InputController from "../InputController";
-import { useSignUp } from "../../hooks/queries/useSignUp";
+import { useSignUpMutation } from "../../hooks/mutations/useSignUpMutation";
 import { Loading } from "../Loading";
 import { IUserSignUp, useSignUpForm } from "../../hooks/forms/useSignUpForm";
 import { ErrorMessage } from "../ErrorMessage";
 import InputPasswordController from "../InputPasswordController";
-
+import { useLanguage } from "../../hooks/locale/useLanguage";
 interface Props {
   handleChangeScreens: () => void;
 }
 
 export const SignUpForm = ({ handleChangeScreens }: Props) => {
-  const mutation = useSignUp();
-  const { handleSubmit, control, formState: { errors } } = useSignUpForm();
-  console.log('message', errors.root?.message);
+  const mutation = useSignUpMutation();
+  const { getMessage } = useLanguage();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useSignUpForm();
   const onSubmit = (user: IUserSignUp) => {
     mutation.mutate(user);
   };
@@ -35,60 +39,59 @@ export const SignUpForm = ({ handleChangeScreens }: Props) => {
     if (mutation.isError) {
       return "Não foi possível realizar o cadastro.";
     }
-  }
-
+  };
   return (
-    <RegisterContainer
-      showsVerticalScrollIndicator={false}
-    >
-      <ContentHeader>
-        <ContentHeaderTitle>Cadastro</ContentHeaderTitle>
-        {mutation.isLoading ? (
-          <Loading size={90} />
-        ) : (
-          <RegisterButton onPress={handleChangeScreens}>
-            Voltar para Login.
-          </RegisterButton>
-        )}
-      </ContentHeader>
-      <ErrorMessage message={getErrorMessage()} />
+      <RegisterContainer showsVerticalScrollIndicator={false}>
+        <ContentHeader>
+          <ContentHeaderTitle>{getMessage('register')}</ContentHeaderTitle>
+          {mutation.isLoading ? (
+            <Loading size={90} />
+          ) : (
+            <RegisterButton onPress={handleChangeScreens}>
+              {getMessage('goBackToLogin')}
+            </RegisterButton>
+          )}
+        </ContentHeader>
+        <ErrorMessage message={getErrorMessage()} />
 
-      <InputsContainer>
-        <InputController
-          control={control}
-          iconName="person"
-          name="name"
-          placeHolder="Nome"
-        />
+        <InputsContainer>
+          <InputController
+            control={control}
+            iconName="person"
+            name="name"
+            placeHolder={getMessage('name')}
+          />
 
-        <InputController
-          control={control}
-          iconName="email"
-          name="email"
-          placeHolder="Email"
-        />
+          <InputController
+            control={control}
+            iconName="email"
+            name="email"
+            placeHolder="Email"
+          />
 
-        <InputPasswordController
-          control={control}
-          iconName="lock"
-          name="password"
-          placeHolder="Senha"
-        />
+          <InputPasswordController
+            control={control}
+            iconName="lock"
+            name="password"
+            placeHolder={getMessage('password')}
+          />
 
-        <InputPasswordController
-          control={control}
-          iconName="lock"
-          name="confirmPassword"
-          placeHolder="Confirmar Senha"
-        />
-      </InputsContainer>
+          <InputPasswordController
+            control={control}
+            iconName="lock"
+            name="confirmPassword"
+            placeHolder={getMessage('confirmPassword')}
+          />
+        </InputsContainer>
 
-      <ButtonsContainer>
-        
-        <Button onPress={handleSubmit(onSubmit)} disabled={mutation.isLoading}>
-          <ButtonTitle>Cadastre-se</ButtonTitle>
-        </Button>
-      </ButtonsContainer>
-    </RegisterContainer>
+        <ButtonsContainer>
+          <Button
+            onPress={handleSubmit(onSubmit)}
+            disabled={mutation.isLoading}
+          >
+            <ButtonTitle>{getMessage('getRegistered')}</ButtonTitle>
+          </Button>
+        </ButtonsContainer>
+      </RegisterContainer>
   );
 };
