@@ -9,14 +9,36 @@ export const Container = styled.KeyboardAvoidingView`
 
 export const Header = styled.View`
   height: 30%;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 0 ${RFValue(12)}px;
 `;
+
+export const ConfigsContainer = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 30%;
+  height: 30%;
+  margin-top: 8%;
+  gap: 16px;
+`;
+
+
+export const LanguageText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary_900};
+  font-size: ${RFValue(24)}px;
+  
+  color: ${({ theme }) => theme.colors.background_primary};
+`;
+
 
 export const HeaderTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_900};
   font-size: ${RFValue(32)}px;
   
+  align-self: center;
   color: ${({ theme }) => theme.colors.background_primary};
 `;
 
