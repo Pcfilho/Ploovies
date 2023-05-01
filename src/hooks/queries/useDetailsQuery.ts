@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { moviesApi } from "../../service/axios/moviesApi";
-import { IMovieData } from "../../@types/movieDetails";
-import { IActor } from "../../@types/actor";
-import { IReview } from "../../@types/review";
+import { ActorModel } from "../../models/actor";
 import { useLanguage } from "../locale/useLanguage";
+import { MovieDataModel } from "../../models/movieDetails";
+import { ReviewModel } from "../../models/review";
 
 const fetchActorsList = async (id: number) => {
   const { data } = await moviesApi.getCreditsByMovieId(id);
   const filteredActors = data.cast.filter(
-    (actor: IActor) => actor["known_for_department"] === "Acting"
+    (actor: ActorModel) => actor["known_for_department"] === "Acting"
   );
   return filteredActors;
 };
@@ -36,7 +36,7 @@ export const useDetailsQuery = (id: number) => {
     isError: isErrorMovieDetails,
     data: movieDetails,
     error: movieDetailsError,
-  } = useQuery<IMovieData>({
+  } = useQuery<MovieDataModel>({
     queryKey: [`@movieDetails/${id}`],
     queryFn: () => fetchMovieDetailsList(id, getCurrentLanguage),
     enabled: !!id,
@@ -47,7 +47,7 @@ export const useDetailsQuery = (id: number) => {
     isError: isErrorReviews,
     data: reviews,
     error: reviewsError,
-  } = useQuery<IReview[]>({
+  } = useQuery<ReviewModel[]>({
     queryKey: [`@movieReviews/${id}`],
     queryFn: () => fetchReviewsList(id, getCurrentLanguage),
     enabled: !!id,
@@ -58,7 +58,7 @@ export const useDetailsQuery = (id: number) => {
     isError: isErrorActors,
     data: actors,
     error: errorActors,
-  } = useQuery<IActor[]>({
+  } = useQuery<ActorModel[]>({
     queryKey: [`@movieActors/${id}`],
     queryFn: () => fetchActorsList(id),
     enabled: !!id,

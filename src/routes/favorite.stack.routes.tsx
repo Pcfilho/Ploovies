@@ -3,19 +3,19 @@ import {
   ParamListBase,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { IMovie } from "../@types/movie";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MovieDetails } from "../screens/app/MovieDetails";
 import { Favorite } from "../screens/app/Favorites";
+import { MovieModel } from "../models/movie";
 
 type RootStackParamList = {
   FavoriteScreen: undefined;
-  FavoriteMovieDetails: { item: IMovie };
+  FavoriteMovieDetails: { item: MovieModel };
 };
 
 export interface IMovieDetailsParams extends RouteProp<ParamListBase> {
   params: {
-    item: IMovie;
+    item: MovieModel;
   };
 }
 

@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 import { doc, getDoc } from "firebase/firestore"
 import { firestore } from "../../service/firebase/firebase"
-import { useSelector } from "react-redux";
 import { useUserSelector } from "../../store/reducers/userReducer";
 import { useRefreshOnFocus } from "./useRefreshOnFocus";
 
 interface UserInterface {
   name: string;
-  email: string;  
+  email: string;
 }
 
 const fetchUserData = (userId: string) => {

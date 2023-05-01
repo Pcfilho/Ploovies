@@ -3,13 +3,13 @@ import { firestore } from "../../service/firebase/firebase";
 import { useMutation } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useUserSelector } from "../../store/reducers/userReducer";
-import { IMovie } from "../../@types/movie";
+import { MovieModel } from "../../models/movie";
 
 
 export const useFavoriteDeleteMutation = (onRemoveSuccess?: () => void) => {
   const id = useUserSelector();
 
-  const deleteFavoriteInFB = async (favoriteData: IMovie) => {
+  const deleteFavoriteInFB = async (favoriteData: MovieModel) => {
     await deleteDoc(doc(firestore, `users/${id}/favorites`, String(favoriteData.id)))
     return {
       favoriteData
@@ -17,14 +17,14 @@ export const useFavoriteDeleteMutation = (onRemoveSuccess?: () => void) => {
   };
 
   const mutation = useMutation({
-    mutationFn: (favoriteData: IMovie) => deleteFavoriteInFB(favoriteData),
+    mutationFn: (favoriteData: MovieModel) => deleteFavoriteInFB(favoriteData),
     onSuccess(data) {
       const deleteFavoriteAsync = async () => {
         try {
-          let finalData: IMovie[] = []
+          let finalData: MovieModel[] = []
           const asyncData = await AsyncStorage.getItem(`@Foovies/favorites/${id}`);          
           if (asyncData) {
-            const asyncDataParsed: IMovie[] = JSON.parse(asyncData);
+            const asyncDataParsed: MovieModel[] = JSON.parse(asyncData);
             finalData = asyncDataParsed.filter(item => item.id !== data.favoriteData.id);
           } else {
             finalData = [data.favoriteData];

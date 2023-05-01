@@ -49,7 +49,7 @@ export const Favorite = () => {
         }}
         ListEmptyComponent={
           <EmptyContainer>
-            <EmptyText>{getMessage('emptyFavorites')}</EmptyText>
+            <EmptyText>{getMessage("emptyFavorites")}</EmptyText>
           </EmptyContainer>
         }
       />

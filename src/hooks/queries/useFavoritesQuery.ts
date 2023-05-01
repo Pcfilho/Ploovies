@@ -5,22 +5,22 @@ import { useNetInfo } from "@react-native-community/netinfo";
 import { firestore } from "../../service/firebase/firebase";
 import { doc } from 'firebase/firestore';
 import { useState } from "react";
-import { IMovie } from "../../@types/movie";
 import { useRefreshOnFocus } from "./useRefreshOnFocus";
+import { MovieModel } from "../../models/movie";
 
 const fetchFavoritesUser = (userId: string) => {
   return doc(firestore, `/favorites/${userId}`) as any;
 }
 
 export const useFavoritesQuery = () => {
-  const [favorites, setFavorites] = useState<IMovie[]>([]);
+  const [favorites, setFavorites] = useState<MovieModel[]>([]);
 
   const id = useUserSelector();
   const { isConnected } = useNetInfo();
   const {
     isLoading,
     refetch
-  } = useQuery<IMovie[]>({
+  } = useQuery<MovieModel[]>({
     queryKey: [`@Foovies/favorites/${id}`],
     queryFn: () => fetchFavoritesUser(id),
     enabled: !!isConnected && !!id,
@@ -32,11 +32,11 @@ export const useFavoritesQuery = () => {
           if (favorites) {
             const dataStringfied = JSON.stringify(data);
             if (dataStringfied === favorites) {
-              const favoritesParse: IMovie[] = JSON.parse(favorites);
+              const favoritesParse: MovieModel[] = JSON.parse(favorites);
               return favoritesParse;
             }
 
-            const favoritesParse: IMovie[] = JSON.parse(favorites);
+            const favoritesParse: MovieModel[] = JSON.parse(favorites);
             return favoritesParse;
           }
         } catch (error) {
@@ -60,7 +60,7 @@ export const useFavoritesQuery = () => {
       try {
         const favorites = await AsyncStorage.getItem(`@Foovies/favorites/${id}`);
         if (favorites) {
-          const favoritesParse: IMovie[] = JSON.parse(favorites);
+          const favoritesParse: MovieModel[] = JSON.parse(favorites);
           return favoritesParse;
         }
       } catch (error) {

@@ -11,27 +11,13 @@ import {
 } from './styles';
 import { Linking } from 'react-native';
 import { useLanguage } from '../../hooks/locale/useLanguage';
+import { ReviewModel } from '../../models/review';
 
-interface IReview {
-  author: string;
-  author_details: {
-    name: string;
-    username: string;
-    avatar_path: string;
-    rating: number;
-  };
-  content: string;
-  created_at: string;
-  id: string;
-  updated_at: string;
-  url: string;
+interface Props {
+  item: ReviewModel;
 }
 
-interface IProps {
-  item: IReview;
-}
-
-export const Review = ({ item } : IProps) => {
+export const Review = ({ item } : Props) => {
   const createdAt = new Date(item.created_at).toLocaleDateString();
   const { getMessage } = useLanguage();
 

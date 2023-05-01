@@ -38,10 +38,3 @@ export const ErrorMessage = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.colors.error};
 `;
-
-export const PasswordIconButton = styled.TouchableOpacity`
-  align-items: center;
-  justify-content: center;
-`;
-
-export const PasswordIcon = styled(Feather)``;

@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-interface IProps {
+interface Props {
   isSelected: boolean;
 }
 
-export const Container = styled.TouchableOpacity<IProps>`
+export const Container = styled.TouchableOpacity<Props>`
   min-width: ${RFValue(64)}px;
   height: ${RFValue(64)}px;
   padding: ${RFValue(5)}px;
@@ -19,7 +19,7 @@ export const Container = styled.TouchableOpacity<IProps>`
   background-color: ${({ theme, isSelected }) => isSelected ? theme.colors.main : theme.colors.background_primary};
 `;
 
-export const Title = styled.Text<IProps>`
+export const Title = styled.Text<Props>`
   font-family: ${({ theme }) => theme.fonts.primary_700};
   font-size: ${RFValue(8)}px;
   

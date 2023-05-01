@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Header,
@@ -59,7 +59,8 @@ export const MovieDetails = () => {
   const route = useRoute<IMovieDetailsParams>();
   const navigate = useNavigation();
   const mutation = useFavoriteMutation(onAddSuccess);
-  const { mutation: deleteMutation } = useFavoriteDeleteMutation(onRemoveSuccess);
+  const { mutation: deleteMutation } =
+    useFavoriteDeleteMutation(onRemoveSuccess);
   const { item } = route.params;
   const [isFavorite, setIsFavorite] = useState(favorites.includes(item));
   const {
@@ -75,7 +76,7 @@ export const MovieDetails = () => {
     outputRange
   );
 
-  useRefreshOnFocus(isMovieInFavorites)
+  useRefreshOnFocus(isMovieInFavorites);
 
   const onShare = async () => {
     try {
@@ -98,7 +99,7 @@ export const MovieDetails = () => {
   };
 
   async function isMovieInFavorites() {
-    setIsFavorite(!!favorites.find(f => f.id === item.id))
+    setIsFavorite(!!favorites.find((f) => f.id === item.id));
   }
 
   function onAddSuccess() {
@@ -115,13 +116,13 @@ export const MovieDetails = () => {
     if (!mutation.isLoading) {
       await mutation.mutateAsync(item);
     }
-  };
+  }
 
   async function removeFromFavorites() {
     if (!deleteMutation.isLoading) {
       await deleteMutation.mutateAsync(item);
     }
-  };
+  }
 
   async function handleFavoriteMovie() {
     if (isFavorite) {
@@ -129,7 +130,7 @@ export const MovieDetails = () => {
     } else {
       await favoriteMovie();
     }
-  };
+  }
 
   const renderFavoriteButton = () => {
     if (mutation.isLoading || deleteMutation.isLoading || isLoading) {
@@ -138,10 +139,7 @@ export const MovieDetails = () => {
 
     return (
       <TouchableOpacity onPress={handleFavoriteMovie}>
-        <FavoriteButton
-          name={isFavorite ? "star" : "star-border"}
-          size={28}
-        />
+        <FavoriteButton name={isFavorite ? "star" : "star-border"} size={28} />
       </TouchableOpacity>
     );
   };
@@ -166,7 +164,7 @@ export const MovieDetails = () => {
             </TouchableOpacity>
           </LeftButtonsContainer>
           <RightButtonsContainer>
-            { renderFavoriteButton() }
+            {renderFavoriteButton()}
             <TouchableOpacity onPress={() => onShare()}>
               <ShareButton name="share" size={28} />
             </TouchableOpacity>
@@ -227,7 +225,7 @@ export const MovieDetails = () => {
         </OverviewContainer>
 
         <CompaniesContainer>
-          <CompaniesTitle>{getMessage('companies')}</CompaniesTitle>
+          <CompaniesTitle>{getMessage("companies")}</CompaniesTitle>
           {isLoadingMovieDetails ? (
             <FlatList
               keyExtractor={(item) => String(item)}
@@ -264,7 +262,7 @@ export const MovieDetails = () => {
         </CompaniesContainer>
 
         <ActorsContainer>
-          <ActorsTitle>{getMessage('actors')}</ActorsTitle>
+          <ActorsTitle>{getMessage("actors")}</ActorsTitle>
           {isLoadingActors ? (
             <FlatList
               keyExtractor={(item) => String(item)}
@@ -303,7 +301,7 @@ export const MovieDetails = () => {
         </ActorsContainer>
 
         <ActorsContainer>
-          <ActorsTitle>{getMessage('avaliations')}</ActorsTitle>
+          <ActorsTitle>{getMessage("avaliations")}</ActorsTitle>
           <FlatList
             keyExtractor={(item) => String(item.id)}
             data={reviews}

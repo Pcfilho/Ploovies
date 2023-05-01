@@ -1,10 +1,4 @@
 import { Easing, Extrapolate, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { Dimensions } from 'react-native';
-
-interface Props {
-  inputRange: number[];
-  outputRange: number[];
-}
 
 export const useTopAnimation = (
   inputRange : number[],

@@ -1,8 +1,8 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { IMovie } from "../../@types/movie";
 import { moviesApi } from "../../service/axios/moviesApi";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../locale/useLanguage";
+import { MovieModel } from "../../models/movie";
 
 const fetchMoviesList = async (page: number, getCurrentLanguage: () => void) => {
 
@@ -11,7 +11,7 @@ const fetchMoviesList = async (page: number, getCurrentLanguage: () => void) => 
 };
 
 export const useMoviesQuery = () => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [movies, setMovies] = useState<MovieModel[]>([]);
   const { getCurrentLanguage } = useLanguage();
   const page = useRef(1);
 
@@ -22,7 +22,7 @@ export const useMoviesQuery = () => {
     error,
     fetchNextPage,
     isFetchingNextPage
-  } = useInfiniteQuery<IMovie[]>({
+  } = useInfiniteQuery<MovieModel[]>({
     queryKey: ["moviesList"],
     queryFn: ({ pageParam = 1 }) => fetchMoviesList(pageParam, getCurrentLanguage),
     getNextPageParam: () => page
@@ -39,7 +39,7 @@ export const useMoviesQuery = () => {
     const flatData = data?.pages.flat(1) || []
     setMovies(flatData)
   }, [data]);
-  
+
   return {
     isLoadingMovies: isLoading,
     isErrorMovies: isError,

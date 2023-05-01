@@ -7,8 +7,6 @@ import {
   InputText,
   Container,
   ErrorMessage,
-  PasswordIcon,
-  PasswordIconButton,
 } from "./styles";
 import { useTheme } from "styled-components";
 

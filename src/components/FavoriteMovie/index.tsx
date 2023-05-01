@@ -21,26 +21,10 @@ import { useTheme } from "styled-components";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { useFavoriteDeleteMutation } from "../../hooks/mutations/useFavoriteDeleteMutation";
 import { useGenreType } from "../../hooks/locale/useGenreTypes";
-
-interface IMovie {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import { MovieModel } from "../../models/movie";
 
 interface Props {
-  item: IMovie;
+  item: MovieModel;
   isDeleteMode: boolean;
   onRemoveSuccess: () => void;
 }

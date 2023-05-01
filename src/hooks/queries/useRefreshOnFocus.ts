@@ -7,8 +7,8 @@ export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
   useFocusEffect(
     React.useCallback(() => {
       if (firstTimeRef.current) {
-         firstTimeRef.current = false;
-         return;
+        firstTimeRef.current = false;
+        return;
       }
 
       refetch()

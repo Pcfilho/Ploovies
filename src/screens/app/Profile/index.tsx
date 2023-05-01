@@ -28,8 +28,8 @@ import {
   useDarkModeSelector,
 } from "../../../store/reducers/darkModeReducer";
 import { Skeleton } from "../../../components/Skeleton";
-import { PickerIOS, Picker } from "@react-native-picker/picker";
-import { LegacyRef, useEffect, useRef, useState } from "react";
+import { Picker } from "@react-native-picker/picker";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../../hooks/locale/useLanguage";
 import { ActionSheetIOS } from "react-native";
 
@@ -65,6 +65,9 @@ export const Profile = () => {
     }
   }
 
+  const getCurrentLanguageName = () =>
+    selectedLanguage === "en" ? "English" : "Português";
+
   useEffect(() => {
     changeLanguage(selectedLanguage);
   }, [selectedLanguage]);
@@ -73,30 +76,6 @@ export const Profile = () => {
     setSelectedLanguage(getCurrentLanguage());
   }, []);
 
-  const renderLanguagesPickers = () => {
-    if (Platform.OS === "android") {
-      return (
-        <Picker
-          ref={pickerRef as unknown as undefined}
-          style={{
-            width: "50%",
-          }}
-          selectedValue={selectedLanguage}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedLanguage(itemValue)
-          }
-        >
-          <Picker.Item label="Português" value="pt-BR" />
-          <Picker.Item label="English" value="en" />
-        </Picker>
-      );
-    } else {
-      const getCurrentLanguageName = () => selectedLanguage === 'en' ? 'English' : 'Português';
-      return (
-        <LanguageText>{getCurrentLanguageName()}</LanguageText>
-      )
-    }
-  };
   return (
     <Container>
       <Header>
@@ -174,7 +153,27 @@ export const Profile = () => {
               <Feather name="globe" size={24} color={theme.colors.main_text} />
               <ConfigTitle>{getMessage("language")}</ConfigTitle>
             </PreferenceTitleContainer>
-            {renderLanguagesPickers()}
+            <LanguageText>{getCurrentLanguageName()}</LanguageText>
+            {Platform.OS === "android" ? (
+              <Picker
+                ref={pickerRef as unknown as undefined}
+                selectedValue={selectedLanguage}
+                onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+                mode="dropdown"
+                dropdownIconColor={theme.colors.main_text}
+              >
+                <Picker.Item
+                  label="Português"
+                  value="pt-BR"
+                  fontFamily={theme.fonts.primary_400}
+                />
+                <Picker.Item
+                  label="English"
+                  value="en"
+                  fontFamily={theme.fonts.primary_400}
+                />
+              </Picker>
+            ) : null}
           </ConfigLanguageContainer>
         </InfoGroupContainer>
       </Content>

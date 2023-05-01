@@ -2,14 +2,9 @@ import React, { useCallback } from "react";
 import { Container, ImageContainer, Title } from "./styles";
 import { GenreIcon } from "../GenreIcon";
 import { useGenreContext } from "../../context/genreSelected";
-
-interface IGenre {
-  id: number;
-  name: string;
-}
-
+import { GenreModel } from "../../models/genre";
 interface Props {
-  item: IGenre;
+  item: GenreModel;
 }
 
 export const Genre = ({ item }: Props) => {

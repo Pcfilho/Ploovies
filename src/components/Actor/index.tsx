@@ -4,13 +4,13 @@ import { Container, RoleTitle, InfoContainer, Title } from './styles';
 import { moviesApi } from '../../service/axios/moviesApi';
 import { Image } from 'react-native';
 
-interface IProps {
+interface Props {
   name: string;
   character: string;
   imageEndPoint: string;
 }
 
-export const Actor = ({ name, character, imageEndPoint} : IProps) => {
+export const Actor = ({ name, character, imageEndPoint} : Props) => {
   const imageSource = moviesApi.getMovieImageW500(imageEndPoint);
 
   return (
