@@ -60,26 +60,32 @@ Após seguir esses passos, você terá acesso ao Foovies, nele, você poderá cr
 
 Caso não tenha interesse em realizar essas etapas e possuir um celular Android, você poderá apontar a câmera dele para o QRCode abaixo e assim baixar a versão .apk do app.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/qrplus-code-1682938554069.jpg) 
 
 ## Preview
 
-Tela de Login
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Login
 
-Home
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k46vv.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k470f.gif) 
 
-Detalhes do filme
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Home
 
-Tela de favoritos
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k47fy.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k47ib.gif) 
 
-Tela de perfil
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Detalhes filme
+
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k44yf.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k455e.gif) 
+
+## Favoritos
+
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45cn.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45fy.gif) 
+
+## Perfil
+
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45nd.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45ot.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45rh.gif) 
