@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Feather from "@expo/vector-icons/Feather";
 import {
   Container,
@@ -27,6 +27,7 @@ import { GenreIcon } from "../../../components/GenreIcon";
 import { Loading } from "../../../components/Loading";
 import { useGenreContext } from "../../../context/genreSelected";
 import { useGenreType } from "../../../hooks/locale/useGenreTypes";
+import { useScrollToTop } from "@react-navigation/native";
 
 export const Home = () => {
   const theme = useTheme();
@@ -37,7 +38,9 @@ export const Home = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchingText, setSearchingText] = useState("");
   const { widthAnimatedStyle } = useWidthAnimation(isSearching, [isSearching]);
+  const listRef = useRef(null);
 
+  useScrollToTop(listRef);
   const renderMoviesList = () => {
     function getFilteredMovies() {
       let filteredMovies: typeof movies = movies || [];
@@ -66,6 +69,7 @@ export const Home = () => {
     if (filteredMovies.length) {
       return (
         <FlatList
+          ref={listRef}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => <Movie item={item} />}
           data={filteredMovies}
@@ -82,7 +86,7 @@ export const Home = () => {
                 <Loading />
               ) : (
                 <LoadMoreText onPress={nextPageHandler}>
-                  Carregue mais filmes!
+                  {getMessage("loadMoreMovies")}
                 </LoadMoreText>
               )}
             </LoadMoreContainer>
@@ -123,7 +127,7 @@ export const Home = () => {
           numberOfLines={1}
           ellipsizeMode="clip"
         >
-          Ploovies
+          Foovies
         </Title>
         {isSearching ? (
           <SearchWrapper>
