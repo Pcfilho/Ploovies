@@ -34,7 +34,6 @@ export default function InputController({
         field: { value, onChange },
         formState: { isSubmitted, errors },
       }) => {
-        console.log(errors);
         const errorMessage = errors[name]?.message?.toString() || "";
         return (
           <Container>
@@ -47,6 +46,7 @@ export default function InputController({
                 value={value}
                 onChangeText={onChange}
                 cursorColor={theme.colors.main}
+                placeholderTextColor={theme.colors.text_details}
               />
             </Input>
             {errorMessage && isSubmitted ? (
