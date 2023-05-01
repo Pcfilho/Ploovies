@@ -3,27 +3,34 @@ import { moviesApi } from "../../service/axios/moviesApi";
 import { IMovieData } from "../../@types/movieDetails";
 import { IActor } from "../../@types/actor";
 import { IReview } from "../../@types/review";
+import { useLanguage } from "../locale/useLanguage";
 
-  const fetchActorsList = async (id: number) => {
+const fetchActorsList = async (id: number) => {
   const { data } = await moviesApi.getCreditsByMovieId(id);
   const filteredActors = data.cast.filter(
     (actor: IActor) => actor["known_for_department"] === "Acting"
   );
   return filteredActors;
-  };
-const fetchReviewsList = async (id: number) => {
-  const { data } = await moviesApi.getReviewsByMovieId(id);
+};
+
+const fetchReviewsList = async (id: number, getCurrentLanguage: () => void) => {
+  const { data } = await moviesApi.getReviewsByMovieId(id, {
+    language: getCurrentLanguage()
+  });
   return data.results;
 };
 
-const fetchMovieDetailsList = async (id: number) => {
-  const { data } = await moviesApi.getMovieById(id);
+const fetchMovieDetailsList = async (id: number, getCurrentLanguage: () => void) => {
+  const { data } = await moviesApi.getMovieById(id, {
+    language: getCurrentLanguage()
+  });
   const imageSource = moviesApi.getMovieImageOriginal(data.backdrop_path) || "";
   const realeseDate = new Date(data?.release_date || "").toLocaleDateString();
   return { ...data, realeseDate, imageSource };
 };
 
-export const useMovieDetails = (id: number) => {
+export const useDetailsQuery = (id: number) => {
+  const { getCurrentLanguage } = useLanguage();
   const {
     isLoading: isLoadingMovieDetails,
     isError: isErrorMovieDetails,
@@ -31,7 +38,7 @@ export const useMovieDetails = (id: number) => {
     error: movieDetailsError,
   } = useQuery<IMovieData>({
     queryKey: [`@movieDetails/${id}`],
-    queryFn: () => fetchMovieDetailsList(id),
+    queryFn: () => fetchMovieDetailsList(id, getCurrentLanguage),
     enabled: !!id,
   });
 
@@ -42,7 +49,7 @@ export const useMovieDetails = (id: number) => {
     error: reviewsError,
   } = useQuery<IReview[]>({
     queryKey: [`@movieReviews/${id}`],
-    queryFn: () => fetchReviewsList(id),
+    queryFn: () => fetchReviewsList(id, getCurrentLanguage),
     enabled: !!id,
   });
 
