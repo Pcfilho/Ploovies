@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { Container, LoadContainer } from "./styles";
-import { Loading } from "../Loading";
-import { FadeIn } from "react-native-reanimated";
-import { Image } from "react-native";
+import React from "react";
+import { Container } from "./styles";
+import { Image } from "expo-image";
 
 interface Props {
   borderRadius?: number;
@@ -10,7 +8,7 @@ interface Props {
   iconId: keyof typeof iconTypes;
 }
 
-const iconTypes: { [key: number]: any; }= {
+export const iconTypes: { [key: number]: any; }= {
   28: require("../../assets/EmojisIcons/Collision.png"),
   12: require("../../assets/EmojisIcons/Cowboy.png"),
   16: require("../../assets/EmojisIcons/GrinningCat.png"),
@@ -39,29 +37,21 @@ export function GenreIcon({
   size = 32,
   iconId,
 }: Props) {
-  const [imageLoading, setImageLoading] = useState(true);
   const getIconPath = () => iconTypes[iconId];
 
   return (
     <Container>
       <Image
         source={getIconPath()}
-        resizeMode="contain"
+        contentFit="contain"
         style={{
           flex: 1,
           width: "100%",
           height: "100%",
           borderRadius: borderRadius,
         }}
-        onLoadEnd={() => {
-          setImageLoading(false);
-        }}
+
       />
-      {imageLoading ? (
-        <LoadContainer exiting={FadeIn.duration(100)}>
-          <Loading size={size} />
-        </LoadContainer>
-      ) : null}
     </Container>
   );
 }

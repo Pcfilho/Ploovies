@@ -1,5 +1,5 @@
-import './src/locale/index';
-import { useCallback, useEffect } from "react";
+import "./src/locale/index";
+import { useCallback, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import {
   useFonts,
@@ -20,6 +20,14 @@ import type { AppStateStatus } from "react-native";
 import { focusManager } from "@tanstack/react-query";
 import { Routes } from "./src/routes";
 import { PersistGate } from "redux-persist/integration/react";
+import { Asset } from "expo-asset";
+import { iconTypes } from "./src/components/GenreIcon";
+
+function cacheImages(images: any[]) {
+  return images.map((image) => {
+    return Asset.fromModule(image).downloadAsync();
+  });
+}
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,6 +40,7 @@ onlineManager.setEventListener((setOnline) => {
 const queryClient = new QueryClient();
 
 export default function App() {
+  const [appIsReady, setAppIsReady] = useState(false);
   const [fontsLoaded] = useFonts({
     Lato_400Regular,
     Lato_700Bold,
@@ -55,7 +64,26 @@ export default function App() {
     return () => subscription.remove();
   }, []);
 
-  if (!fontsLoaded) {
+  useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        SplashScreen.preventAutoHideAsync();
+        const imagesPaths = Object.values(iconTypes)
+        const imageAssets = cacheImages(imagesPaths);
+
+        await Promise.all(imageAssets);
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+        SplashScreen.hideAsync();
+      }
+    }
+
+    loadResourcesAndDataAsync();
+  }, []);
+
+  if (!fontsLoaded || !appIsReady) {
     return null;
   }
   return (

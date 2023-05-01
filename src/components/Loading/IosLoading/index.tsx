@@ -1,5 +1,5 @@
 import LottieView from "lottie-react-native";
-import loadingSource from "../../../assets/foovies-loading.json";
+import loadingSource from "../../../assets/ploovies-loading.json";
 
 interface Props {
   size: number;

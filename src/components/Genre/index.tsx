@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Container, ImageContainer, Title } from "./styles";
 import { GenreIcon } from "../GenreIcon";
 import { useGenreContext } from "../../context/genreSelected";
