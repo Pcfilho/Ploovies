@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
+import './src/locale/index';
 import { useCallback, useEffect } from "react";
-import { ThemeProvider } from "styled-components/native";
 import * as SplashScreen from "expo-splash-screen";
-import theme from "./src/styles/theme";
 import {
   useFonts,
   Lato_400Regular,
@@ -11,12 +9,17 @@ import {
 } from "@expo-google-fonts/lato";
 import { AppState, Platform, View } from "react-native";
 import { Provider } from "react-redux";
-import { store } from "./src/store";
+import { persistor, store } from "./src/store";
 import NetInfo from "@react-native-community/netinfo";
-import { QueryClient, QueryClientProvider, onlineManager } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  onlineManager,
+} from "@tanstack/react-query";
 import type { AppStateStatus } from "react-native";
 import { focusManager } from "@tanstack/react-query";
 import { Routes } from "./src/routes";
+import { PersistGate } from "redux-persist/integration/react";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -49,24 +52,21 @@ export default function App() {
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", onAppStateChange);
-
     return () => subscription.remove();
   }, []);
 
   if (!fontsLoaded) {
     return null;
   }
-
   return (
     <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
+      <PersistGate persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
           <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-            <StatusBar style="dark" translucent />
             <Routes />
           </View>
-        </ThemeProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </PersistGate>
     </Provider>
   );
 }
