@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { useSelector } from "react-redux";
 
-interface Action {
-  payload: IUser;
-  type: string;
-}
-
-interface IUser {
+interface UserInterface {
   id: string;
 }
 
-interface IUserSelector {
-  user: IUser;
+interface Action {
+  payload: UserInterface;
+  type: string;
+}
+
+interface UserSelector {
+  user: UserInterface;
 }
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     id: ''
-  } as IUser,
+  },
   reducers: {
     updateUser: (_, action: Action) => {
       return action.payload
@@ -31,6 +31,6 @@ export const { updateUser } = userSlice.actions;
 
 
 export const useUserSelector = () => {
-  const userSelected = useSelector<IUserSelector, IUser>((storeState) => storeState.user)
+  const userSelected = useSelector<UserSelector, string>((storeState) => storeState.user.id);
   return userSelected;
 };
