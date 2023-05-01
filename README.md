@@ -1,5 +1,5 @@
 
-# Foovies
+# Ploovies
 
 Um aplicativo de listagem de filmes, onde é possível criar a sua conta e favoritar filmes!
 
@@ -66,8 +66,13 @@ Caso não tenha interesse em realizar essas etapas e possuir um celular Android,
 
 ## Login
 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k46vv.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k470f.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6j5f.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jbh.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jcv.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jhc.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jju.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jme.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jpn.gif) 
 
 ## Home
 
