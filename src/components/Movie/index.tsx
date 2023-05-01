@@ -1,11 +1,19 @@
 import React, { memo } from "react";
 
-import { Container, InfoContainer, Title, GenreTitle } from "./styles";
-import { Image } from "react-native";
+import {
+  Container,
+  InfoContainer,
+  Title,
+  GenreTitle,
+  ContainerButton,
+} from "./styles";
 import { Stars } from "../Stars";
 import { moviesApi } from "../../service/axios/moviesApi";
 import { useNavigation } from "@react-navigation/native";
-import { HomeScreenNavigationProp } from "../../routes/home.routes";
+import { HomeScreenNavigationProp } from "../../routes/home.stack.routes";
+import { Image } from "../Image";
+import { FadeIn } from "react-native-reanimated";
+import { useGenreType } from "../../hooks/locale/useGenreTypes";
 
 interface IMovie {
   adult: boolean;
@@ -28,86 +36,9 @@ interface Props {
   item: IMovie;
 }
 
-const genreTypes = [
-  {
-    id: 28,
-    name: "Ação",
-  },
-  {
-    id: 12,
-    name: "Aventura",
-  },
-  {
-    id: 16,
-    name: "Animação",
-  },
-  {
-    id: 35,
-    name: "Comédia",
-  },
-  {
-    id: 80,
-    name: "Crime",
-  },
-  {
-    id: 99,
-    name: "Documentário",
-  },
-  {
-    id: 18,
-    name: "Drama",
-  },
-  {
-    id: 10751,
-    name: "Família",
-  },
-  {
-    id: 14,
-    name: "Fantasia",
-  },
-  {
-    id: 36,
-    name: "História",
-  },
-  {
-    id: 27,
-    name: "Terror",
-  },
-  {
-    id: 10402,
-    name: "Música",
-  },
-  {
-    id: 9648,
-    name: "Mistério",
-  },
-  {
-    id: 10749,
-    name: "Romance",
-  },
-  {
-    id: 878,
-    name: "Ficção científica",
-  },
-  {
-    id: 10770,
-    name: "Cinema TV",
-  },
-  {
-    id: 53,
-    name: "Thriller",
-  },
-  {
-    id: 10752,
-    name: "Guerra",
-  },
-  {
-    id: 37,
-    name: "Faroeste",
-  },
-];
 
 export const Movie = ({ item }: Props) => {
+  const { genreTypes } = useGenreType();
   const { navigate } = useNavigation<HomeScreenNavigationProp>();
   const movieImage = moviesApi.getMovieImageOriginal(item.backdrop_path);
   const getGenreById = (id: number) => {
@@ -115,23 +46,21 @@ export const Movie = ({ item }: Props) => {
   };
 
   return (
-    <Container onPress={() => navigate("MovieDetails", { item })}>
-        <Image
-          source={{ uri: movieImage }}
-          resizeMode="cover"
-          style={{
-            height: "80%",
-            borderRadius: 8,
-          }}
-        />
-      <InfoContainer>
-        <Title numberOfLines={1} ellipsizeMode="tail">{item.title}</Title>
-        <GenreTitle>{getGenreById(item.genre_ids[0])}</GenreTitle>
-        <Stars vote_average={item.vote_average} />
-      </InfoContainer>
+    <Container entering={FadeIn.duration(500)}>
+      <ContainerButton onPress={() => navigate("MovieDetails", { item })}>
+        <Image imageSource={movieImage} size={98} borderRadius={8} />
+        <InfoContainer>
+          <Title numberOfLines={1} ellipsizeMode="tail">
+            {item.title}
+          </Title>
+          <GenreTitle>{getGenreById(item.genre_ids[0])}</GenreTitle>
+          <Stars vote_average={item.vote_average} />
+        </InfoContainer>
+      </ContainerButton>
     </Container>
   );
 };
 
-
-export const MovieMemo = memo(Movie, (prevProps, nextProps) => Object.is(prevProps, nextProps))
+export const MovieMemo = memo(Movie, (prevProps, nextProps) =>
+  Object.is(prevProps, nextProps)
+);

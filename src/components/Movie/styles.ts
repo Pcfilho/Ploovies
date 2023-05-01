@@ -1,8 +1,13 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Animated from 'react-native-reanimated';
 
 
-export const Container = styled.TouchableOpacity`
+export const ContainerButton = styled.TouchableOpacity`
+  flex: 1;
+`;
+
+export const Container = styled(Animated.View)`
   height: ${RFValue(300)}px;
   width: 50%;
   padding: ${RFValue(20)}px;
