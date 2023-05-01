@@ -70,6 +70,7 @@ Caso não tenha interesse em realizar essas etapas e possuir um celular Android,
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6j0w.gif)
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6ivx.gif)
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6izk.gif)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6lz7.gif)
 
 ## Home
 
