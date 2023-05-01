@@ -21,7 +21,7 @@ export const useUserDataQuery = () => {
     isLoading,
     refetch
   } = useQuery({
-    queryKey: ['@Foovies/userData'],
+    queryKey: ['@Ploovies/userData'],
     queryFn: () => fetchUserData(id),
   })
 

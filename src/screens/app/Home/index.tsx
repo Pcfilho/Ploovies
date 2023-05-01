@@ -127,7 +127,7 @@ export const Home = () => {
           numberOfLines={1}
           ellipsizeMode="clip"
         >
-          Foovies
+          Ploovies
         </Title>
         {isSearching ? (
           <SearchWrapper>
