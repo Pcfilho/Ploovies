@@ -1,22 +1,22 @@
-import React from "react";
-import LottieView from "lottie-react-native";
-import loadingSource from "../../assets/ploovies-loading.json";
-import { View } from "react-native";
+
+import { Platform } from "react-native";
+import { IosLoading } from "./IosLoading";
+import { AndroidLoading } from "./AndroidLoading";
 
 interface Props {
   size?: number;
 }
 
 export const Loading = ({ size = 32 }: Props) => {
+  const isIos = Platform.OS === "ios";
+
+  if (isIos) {
+    return (
+      <IosLoading size={ size } />
+    )
+  }
+
   return (
-    <LottieView
-      autoPlay
-      loop
-      style={{
-        width: size,
-        height: size,
-      }}
-      source={loadingSource}
-    />
-  );
+    <AndroidLoading size={size} />
+  )
 };
