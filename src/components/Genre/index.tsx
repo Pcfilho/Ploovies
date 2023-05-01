@@ -1,9 +1,7 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
-import { Container, Title } from "./styles";
-import { Image } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { updateGenre, useGenreSelector } from "../../store/reducers/genreReducer";
-import { getIconById } from "./utils/iconTypes";
+import React, { useCallback } from "react";
+import { Container, ImageContainer, Title } from "./styles";
+import { GenreIcon } from "../GenreIcon";
+import { useGenreContext } from "../../context/genreSelected";
 
 interface IGenre {
   id: number;
@@ -15,32 +13,18 @@ interface Props {
 }
 
 export const Genre = ({ item }: Props) => {
-  const genreSelected = useGenreSelector();
-  const dispatch = useDispatch();
-  const isSelected = () => genreSelected === String(item.id);
-  const [iconSource, setIconSource] = useState("");
+  const {genreSelected, updateGenreSelected} = useGenreContext(); 
+  const isSelected = () => genreSelected === item.id
 
-  const handleGenreSelect = useCallback(() => {
-    if (isSelected()) {
-      dispatch(updateGenre(""));
-      return;
-    }
-    dispatch(updateGenre(item.id.toString()));
-  }, [genreSelected]);
-
-  useEffect(() => {
-    setIconSource(getIconById(item.id));
-  }, []);
+  const handleGenreSelect = async () => {
+    updateGenreSelected(item.id);
+  }
 
   return (
     <Container onPress={handleGenreSelect} isSelected={isSelected()}>
-      <Image
-        source={{ uri: iconSource }}
-        style={{
-          height: 35,
-          width: 35,
-        }}
-      />
+      <ImageContainer>
+        <GenreIcon iconId={item.id} />
+      </ImageContainer>
       <Title isSelected={isSelected()}>{item.name}</Title>
     </Container>
   );

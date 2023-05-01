@@ -1,12 +1,11 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface IProps {
   isSelected: boolean;
 }
 
-export const Container = styled(TouchableOpacity)<IProps>`
+export const Container = styled.TouchableOpacity<IProps>`
   min-width: ${RFValue(64)}px;
   height: ${RFValue(64)}px;
   padding: ${RFValue(5)}px;
@@ -25,4 +24,12 @@ export const Title = styled.Text<IProps>`
   font-size: ${RFValue(8)}px;
   
   color: ${({ theme, isSelected }) => isSelected ? theme.colors.background_primary : theme.colors.main_text};
+`;
+
+export const ImageContainer = styled.View`
+  width: ${RFValue(32)}px;
+  height: ${RFValue(32)}px;
+  align-items: center;
+  justify-content: center;
+
 `;
