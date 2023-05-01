@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { 
+import {
   getAuth,
-  initializeAuth } from 'firebase/auth';
+  initializeAuth
+} from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAq5Q0MqMV84GW7KgMI3WKzZDVoapVCEdc",
   authDomain: "ploovies.firebaseapp.com",
@@ -15,10 +15,11 @@ const firebaseConfig = {
   measurementId: "G-RSHTJM4F30"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const initFirebase = () => {
   initializeAuth(app);
 };
 
 export const auth = getAuth(app);
+
+export const firestore = getFirestore(app);
