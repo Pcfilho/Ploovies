@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-import { Container, GenreTitle, InfoContainer, Title } from './styles';
+import { Container, RoleTitle, InfoContainer, Title } from './styles';
 import { moviesApi } from '../../service/axios/moviesApi';
 import { Image } from 'react-native';
 
@@ -25,8 +25,10 @@ export const Actor = ({ name, character, imageEndPoint} : IProps) => {
       />
       <InfoContainer>
         <Title ellipsizeMode='tail' numberOfLines={1}>{name}</Title>
-        <GenreTitle>{character}</GenreTitle>
+        <RoleTitle>{character}</RoleTitle>
       </InfoContainer>
     </Container>
   );
 }
+
+export const ActorMemo = memo(Actor);

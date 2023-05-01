@@ -18,7 +18,7 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.main_text};
 `;
 
-export const GenreTitle = styled.Text`
+export const RoleTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_400};
   font-size: ${RFValue(8)}px;
   color: ${({ theme }) => theme.colors.text};
