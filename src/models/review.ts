@@ -1,4 +1,4 @@
-export interface IReview {
+export interface ReviewModel {
   author: string;
   author_details: {
     name: string;
