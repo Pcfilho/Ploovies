@@ -40,6 +40,19 @@
     "tvMovie": "Cinema TV",
     "war": "Guerra",
     "welcome": "Seja\nBem-vindo!",
-    "western": "Faroeste"
+    "western": "Faroeste",
+
+    "auth/wrong-password": "Senha incorreta",
+    "auth/user-not-found": "Usuário não encontrado",
+    "auth/email-already-in-use": "Email já em uso",
+    "necessaryName": "Nome é necessário",
+    "necessaryEmail": "Email é necessário",
+    "necessaryPassword": "Senha é necessária",
+    "necessaryConfirmPassword": "Confirmar Senha é necessária",
+    "validEmail": "Insira um email válido",
+    "validPassword": "Insira uma senha válida",
+    "notMatchPasswords": "As senhas não são iguais",
+
+    "shortPassword": "Senha muito curta"
   }
 }

@@ -16,7 +16,8 @@ import { useSignInMutation } from "../../hooks/mutations/useSignInMutation";
 import { IUserSignIn, useSignInForm } from "../../hooks/forms/useSignInForm";
 import { ErrorMessage } from "../ErrorMessage";
 import InputPasswordController from "../InputPasswordController";
-import { useLanguage } from "../../hooks/locale/useLanguage";
+import { useErrorMessage } from "../../hooks/locale/useErrorMessage";
+import { Language } from "../../locale/languageInterface";
 
 interface Props {
   handleChangeScreens: () => void;
@@ -24,10 +25,11 @@ interface Props {
 
 export const SignInForm = ({ handleChangeScreens }: Props) => {
   const { handleSubmit, control } = useSignInForm();
-  const { getMessage } = useLanguage(); 
-
   const mutation = useSignInMutation();
-
+  const mutationError = mutation?.error as ErrorFirebaseModel;
+  const { errorMessage, getMessage } = useErrorMessage(
+    mutationError?.code as keyof Language
+  );
   const onSubmit = (user: IUserSignIn) => {
     mutation.mutate(user);
   };
@@ -52,9 +54,7 @@ export const SignInForm = ({ handleChangeScreens }: Props) => {
           placeHolder={getMessage("password")}
         />
 
-        {mutation.isError ? (
-          <ErrorMessage message={"Não foi possível realizar o login."} />
-        ) : null}
+        {mutation.isError ? <ErrorMessage message={errorMessage} /> : null}
       </InputsContainer>
       <ButtonsContainer>
         <Button onPress={handleSubmit(onSubmit)} disabled={mutation.isLoading}>

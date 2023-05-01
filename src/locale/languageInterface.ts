@@ -45,4 +45,17 @@ export interface Language {
   preferences: string;
   darkMode: string;
   language: string;
+
+
+  "auth/wrong-password": string;
+  "auth/user-not-found": string;
+  "auth/email-already-in-use": string;
+  "necessaryName": string;
+  "necessaryEmail": string;
+  "necessaryPassword": string;
+  "necessaryConfirmPassword": string;
+  "validEmail": string;
+  "validPassword": string;
+  "notMatchPasswords": string;
+  "shortPassword": string;
 }

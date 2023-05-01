@@ -15,9 +15,14 @@ export function useLanguage() {
     return i18n.language as 'en' | 'pt-BR';
   };
 
+  function isEn() {
+    return i18n.language === 'en';
+  }
+
   return {
     getMessage,
     changeLanguage,
-    getCurrentLanguage
+    getCurrentLanguage,
+    isEn,
   }
 }

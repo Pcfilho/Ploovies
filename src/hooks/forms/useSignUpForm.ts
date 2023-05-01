@@ -1,29 +1,37 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLanguage } from "../locale/useLanguage";
 
-const signUpValidationSchema = z
-  .object({
-    email: z
-      .string()
-      .nonempty({ message: "Email é necessário" })
-      .email({ message: "Insira email válido" }),
-    password: z.string().min(6, { message: "Senha é necessária" }),
-    name: z.string().nonempty({ message: "Nome é necessário" }),
-    confirmPassword: z.string().min(6, { message: "Confirmar a senha é necessário" }),
-  })
-  .refine(
-    ({ password, confirmPassword }) => password === confirmPassword,
-    {  message: "As senhas precisam ser iguais!", }
-  );
 
-export interface IUserSignUp extends z.infer<typeof signUpValidationSchema> {
+
+export interface IUserSignUp {
   "": {
     message: string;
-  }
+  };
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 };
 
 export const useSignUpForm = () => {
+  const { getMessage } = useLanguage();
+  const signUpValidationSchema = z
+    .object({
+      email: z
+        .string()
+        .nonempty({ message: getMessage('necessaryEmail') })
+        .email({ message: getMessage('validEmail') }),
+      password: z.string().min(6, { message: getMessage('shortPassword') }),
+      name: z.string().nonempty({ message: getMessage('necessaryName') }),
+      confirmPassword: z.string().min(6, { message: getMessage('necessaryConfirmPassword') }),
+    })
+    .refine(
+      ({ password, confirmPassword }) => password === confirmPassword,
+      { message: getMessage('notMatchPasswords'), }
+    );
+
   return useForm<IUserSignUp>({
     defaultValues: {
       email: "",

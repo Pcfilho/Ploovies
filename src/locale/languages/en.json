@@ -40,6 +40,19 @@
     "tvMovie": "TV Movies",
     "war": "War",
     "welcome": "Welcome!",
-    "western": "Western"
+    "western": "Western",
+
+    "auth/wrong-password": "Wrong password",
+    "auth/user-not-found": "User not found",
+    "auth/email-already-in-use": "Email already in use",
+    "necessaryName": "Name is necessary",
+    "necessaryEmail": "Email is necessary",
+    "necessaryPassword": "Password is necessary",
+    "necessaryConfirmPassword": "Confirm Password is necessary",
+    "validEmail": "Insert a valid email",
+    "validPassword": "Insert a valid password",
+    "notMatchPasswords": "Passwords don't match",
+
+    "shortPassword": "Password too short"
   }
 }
