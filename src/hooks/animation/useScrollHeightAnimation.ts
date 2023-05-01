@@ -1,14 +1,6 @@
 import { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 
-interface Props {
-  inputRange: number[],
-  outputRange: number[],
-}
-
-export const useScrollHeightAnimation = ({
-  inputRange,
-  outputRange,
-}: Props) => {
+export const useScrollHeightAnimation = (inputRange: number[], outputRange: number[]) => {
   const scrollY = useSharedValue(0);
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
