@@ -10,7 +10,7 @@ const signUpValidationSchema = z
       .email({ message: "Insira email válido" }),
     password: z.string().min(6, { message: "Senha é necessária" }),
     name: z.string().nonempty({ message: "Nome é necessário" }),
-    confirmPassword: z.string().min(6, { message: "Senha é necessária" }),
+    confirmPassword: z.string().min(6, { message: "Confirmar a senha é necessário" }),
   })
   .refine(
     ({ password, confirmPassword }) => password === confirmPassword,
