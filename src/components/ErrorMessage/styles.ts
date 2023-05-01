@@ -7,5 +7,5 @@ export const RegisterErrorMessage = styled.Text`
   
   color: ${({ theme }) => theme.colors.error};
   align-self: center;
-  margin: ${RFValue(8)}px 0a;
+  margin: ${RFValue(8)}px 0;
 `;
