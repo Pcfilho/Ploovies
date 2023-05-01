@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   Button,
   ButtonTitle,
@@ -14,10 +12,11 @@ import {
 } from "./styles";
 import { Loading } from "../Loading";
 import InputController from "../InputController";
-import { useSignIn } from "../../hooks/queries/useSignIn";
+import { useSignInMutation } from "../../hooks/mutations/useSignInMutation";
 import { IUserSignIn, useSignInForm } from "../../hooks/forms/useSignInForm";
 import { ErrorMessage } from "../ErrorMessage";
 import InputPasswordController from "../InputPasswordController";
+import { useLanguage } from "../../hooks/locale/useLanguage";
 
 interface Props {
   handleChangeScreens: () => void;
@@ -25,8 +24,9 @@ interface Props {
 
 export const SignInForm = ({ handleChangeScreens }: Props) => {
   const { handleSubmit, control } = useSignInForm();
+  const { getMessage } = useLanguage(); 
 
-  const mutation = useSignIn();
+  const mutation = useSignInMutation();
 
   const onSubmit = (user: IUserSignIn) => {
     mutation.mutate(user);
@@ -49,20 +49,21 @@ export const SignInForm = ({ handleChangeScreens }: Props) => {
           control={control}
           iconName="lock"
           name="password"
-          placeHolder="Senha"
+          placeHolder={getMessage("password")}
         />
 
-        { mutation.isError ? <ErrorMessage message={"Não foi possível realizar o login."} /> : null}
+        {mutation.isError ? (
+          <ErrorMessage message={"Não foi possível realizar o login."} />
+        ) : null}
       </InputsContainer>
-
       <ButtonsContainer>
         <Button onPress={handleSubmit(onSubmit)} disabled={mutation.isLoading}>
-          <ButtonTitle> Entrar </ButtonTitle>
+          <ButtonTitle>{getMessage("enter")}</ButtonTitle>
         </Button>
         <RegisterTextWrapper>
-          <RegisterTitle>Ainda não possui conta?</RegisterTitle>
+          <RegisterTitle>{getMessage("noAccount")}</RegisterTitle>
           <RegisterButton onPress={handleChangeScreens}>
-            Registre-se
+            {getMessage("getRegistered")}
           </RegisterButton>
         </RegisterTextWrapper>
       </ButtonsContainer>
