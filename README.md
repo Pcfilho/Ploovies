@@ -54,7 +54,7 @@ Agora, basta abrir o terminal no projeto clonado e rodar essas duas linhas, uma 
   $ yarn
   $ npx expo start
 ```
-Após seguir esses passos, você terá acesso ao Foovies, nele, você poderá criar a sua conta e com ela poderá ver filmes, e favorita-los! Também é possível ativar o modo escuro, e alternar entre os idiomas Português e Inglês, na tela de Perfil.
+Após seguir esses passos, você terá acesso ao Foovies, nele, você poderá criar a sua conta e com ela poderá ver informações de filmes, e favorita-los! Também é possível ativar o modo escuro, e alternar entre os idiomas Português e Inglês, na tela de Perfil.
 
 ####
 
