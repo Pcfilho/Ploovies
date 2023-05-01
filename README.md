@@ -66,31 +66,32 @@ Caso não tenha interesse em realizar essas etapas e possuir um celular Android,
 
 ## Login
 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6j5f.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jbh.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jcv.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jhc.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jju.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jme.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jpn.gif) 
+
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6j0w.gif)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6ivx.gif)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6izk.gif)
 
 ## Home
 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k47fy.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k47ib.gif) 
-
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6j5f.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jbh.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jcv.gif) 
 ## Detalhes filme
 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jhc.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jju.gif) 
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k44yf.gif) 
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k455e.gif) 
 
 ## Favoritos
 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jme.gif) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6jpn.gif)
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45cn.gif) 
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45fy.gif) 
 
 ## Perfil
-
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6l5z.gif)
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k6lak.gif)
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45nd.gif) 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45ot.gif) 
 ![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/7k45rh.gif) 
