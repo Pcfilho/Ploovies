@@ -30,14 +30,14 @@ export const useTopAnimation = (
     contentTop.value = withTiming(
       0,
       {
-        duration: 1000,
+        duration: 500,
         easing: Easing.ease,
       },
       () => {
         runOnJS(onAnimation)();
 
         contentTop.value = withTiming(100, {
-          duration: 1000,
+          duration: 800,
           easing: Easing.ease,
         });
       }
