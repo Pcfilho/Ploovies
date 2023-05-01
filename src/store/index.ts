@@ -6,12 +6,12 @@ import persistStore from 'redux-persist/es/persistStore'
 import { darkModeReducer } from './reducers/darkModeReducer'
 
 const userPersistConfig = {
-  key: '@Foovies/user',
+  key: '@Ploovies/user',
   storage: AsyncStorage,
 }
 
 const darkModePersistConfig = {
-  key: '@Foovies/darkMode',
+  key: '@Ploovies/darkMode',
   storage: AsyncStorage
 };
 
