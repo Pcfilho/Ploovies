@@ -22,7 +22,7 @@ export const useFavoriteMutation = (onAddSuccess?: () => void) => {
       const setNewFavoriteAsync = async () => {
         try {
           let finalData: IMovie[] = []
-          const asyncData = await AsyncStorage.getItem(`@Ploovies/favorites/${id}`);
+          const asyncData = await AsyncStorage.getItem(`@Foovies/favorites/${id}`);
           if (asyncData) {
             const asyncDataParsed: IMovie[] = JSON.parse(asyncData);
             finalData = [...asyncDataParsed, data.favoriteData];
@@ -31,7 +31,7 @@ export const useFavoriteMutation = (onAddSuccess?: () => void) => {
           }
 
           const finalDataStringfied = JSON.stringify(finalData);
-          await AsyncStorage.setItem(`@Ploovies/favorites/${id}`, finalDataStringfied)
+          await AsyncStorage.setItem(`@Foovies/favorites/${id}`, finalDataStringfied)
         } catch (err) {
           console.log('signInUser error', err);
         }

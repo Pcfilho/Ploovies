@@ -21,13 +21,13 @@ export const useFavoritesQuery = () => {
     isLoading,
     refetch
   } = useQuery<IMovie[]>({
-    queryKey: [`@Ploovies/favorites/${id}`],
+    queryKey: [`@Foovies/favorites/${id}`],
     queryFn: () => fetchFavoritesUser(id),
     enabled: !!isConnected && !!id,
     onSuccess(data) {
       const compareWithAsync = async () => {
         try {
-          const favorites = await AsyncStorage.getItem(`@Ploovies/favorites/${id}`);
+          const favorites = await AsyncStorage.getItem(`@Foovies/favorites/${id}`);
 
           if (favorites) {
             const dataStringfied = JSON.stringify(data);
@@ -58,7 +58,7 @@ export const useFavoritesQuery = () => {
   if (!isConnected) {
     const getAsyncFavorites = async () => {
       try {
-        const favorites = await AsyncStorage.getItem(`@Ploovies/favorites/${id}`);
+        const favorites = await AsyncStorage.getItem(`@Foovies/favorites/${id}`);
         if (favorites) {
           const favoritesParse: IMovie[] = JSON.parse(favorites);
           return favoritesParse;

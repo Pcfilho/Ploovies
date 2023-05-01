@@ -4,8 +4,8 @@ const apiKey = process.env.API_KEY;
 
 export default {
   expo: {
-    name: "Ploovies",
-    slug: "Ploovies",
+    name: "Foovies",
+    slug: "Foovies",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",

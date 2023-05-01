@@ -22,7 +22,7 @@ export const useFavoriteDeleteMutation = (onRemoveSuccess?: () => void) => {
       const deleteFavoriteAsync = async () => {
         try {
           let finalData: IMovie[] = []
-          const asyncData = await AsyncStorage.getItem(`@Ploovies/favorites/${id}`);          
+          const asyncData = await AsyncStorage.getItem(`@Foovies/favorites/${id}`);          
           if (asyncData) {
             const asyncDataParsed: IMovie[] = JSON.parse(asyncData);
             finalData = asyncDataParsed.filter(item => item.id !== data.favoriteData.id);
@@ -31,7 +31,7 @@ export const useFavoriteDeleteMutation = (onRemoveSuccess?: () => void) => {
           }
 
           const finalDataStringfied = JSON.stringify(finalData);
-          await AsyncStorage.setItem(`@Ploovies/favorites/${id}`, finalDataStringfied, () => {
+          await AsyncStorage.setItem(`@Foovies/favorites/${id}`, finalDataStringfied, () => {
             if(onRemoveSuccess) {
               onRemoveSuccess()
             }
