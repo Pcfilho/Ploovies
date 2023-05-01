@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Container, CompanyTitle } from "./styles";
 import { moviesApi } from "../../service/axios/moviesApi";
@@ -28,3 +28,5 @@ export const Company = ({ imageEndpoint, companyName }: Props) => {
     </Container>
   );
 };
+
+export const CompanyMemo = memo(Company);
