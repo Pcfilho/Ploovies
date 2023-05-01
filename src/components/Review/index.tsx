@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { 
   Container,
@@ -45,3 +45,5 @@ export const Review = ({ item } : IProps) => {
     </Container>
   );
 }
+
+export const ReviewMemo = memo(Review);
