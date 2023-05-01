@@ -47,7 +47,6 @@ export default function InputPasswordController({
         field: { value, onChange },
         formState: { isSubmitted, errors },
       }) => {
-        console.log(errors);
         const errorMessage = errors[name]?.message?.toString() || "";
         return (
           <Container>
@@ -61,6 +60,7 @@ export default function InputPasswordController({
                 onChangeText={onChange}
                 cursorColor={theme.colors.main}
                 secureTextEntry={hidePassword}
+                placeholderTextColor={theme.colors.text_details}
               />
               <PasswordIconButton onPress={handleShowPassword}>
                 {renderShowPassword()}
