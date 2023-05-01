@@ -1,10 +1,34 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { genreReducer } from './reducers/genreReducer'
 import { userReducer } from './reducers/userReducer'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist'
+import persistStore from 'redux-persist/es/persistStore'
+import { darkModeReducer } from './reducers/darkModeReducer'
+
+const userPersistConfig = {
+  key: '@Ploovies/user',
+  storage: AsyncStorage,
+}
+
+const darkModePersistConfig = {
+  key: '@Ploovies/darkMode',
+  storage: AsyncStorage
+};
+
+const persistDarkModeReducer = persistReducer(darkModePersistConfig, darkModeReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 
 export const store = configureStore({
   reducer: {
-    genre: genreReducer,
-    user: userReducer
+    user: persistedUserReducer,
+    darkMode: persistDarkModeReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
+
+export const persistor = persistStore(store)
