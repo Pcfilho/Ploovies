@@ -10,6 +10,7 @@ import {
   ReviewUrl,
 } from './styles';
 import { Linking } from 'react-native';
+import { useLanguage } from '../../hooks/locale/useLanguage';
 
 interface IReview {
   author: string;
@@ -32,10 +33,12 @@ interface IProps {
 
 export const Review = ({ item } : IProps) => {
   const createdAt = new Date(item.created_at).toLocaleDateString();
+  const { getMessage } = useLanguage();
+
   return (
     <Container>
       <Header>
-        <AuthorTitle>Autor: {item.author}</AuthorTitle>
+        <AuthorTitle>{getMessage('author')}: {item.author}</AuthorTitle>
         <CreatedTitle>{createdAt}</CreatedTitle>
       </Header>
       <Content>
