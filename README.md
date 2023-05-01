@@ -41,7 +41,10 @@ Agora, na sua maquina, você precisara ter as últimas versões desses gerenciad
  - [NPM]()
  - [Yarn]()
 
-Para rodar no seu celular em modo de desenvolvimento, também será necessário a instalação desse app no dispositivo móvel que será utilizado.
+Recomenda-se seguir o guia de instalação do Expo para poder seguir com os próximos passos.
+- [Guia de instalação Expo](https://docs.expo.dev/get-started/installation/)
+
+O App está disponível para celulares IOS e Android Para rodar no seu celular em modo de desenvolvimento, também será necessário a instalação desse app no dispositivo móvel que será utilizado.
  - [Expo Go]()
 
 Pronto, agora, clone o projeto e depois que abrir ele na sua IDE de preferência, renomeie o arquivo .env.example para somente .env e dentro dele você deverá trocar o valor de YOUR_API_KEY pela sua Api Key do TMDB. Seu arquivo .env deverá ficar nesse formato:
