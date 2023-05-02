@@ -41,7 +41,10 @@ Agora, na sua maquina, você precisara ter as últimas versões desses gerenciad
  - [NPM]()
  - [Yarn]()
 
-Para rodar no seu celular em modo de desenvolvimento, também será necessário a instalação desse app no dispositivo móvel que será utilizado.
+Recomenda-se seguir o guia de instalação do Expo para poder seguir com os próximos passos.
+- [Guia de instalação Expo](https://docs.expo.dev/get-started/installation/)
+
+O App está disponível para celulares IOS e Android. Para rodar no seu celular em modo de desenvolvimento, também será necessário a instalação desse app no dispositivo móvel que será utilizado.
  - [Expo Go]()
 
 Pronto, agora, clone o projeto e depois que abrir ele na sua IDE de preferência, renomeie o arquivo .env.example para somente .env e dentro dele você deverá trocar o valor de YOUR_API_KEY pela sua Api Key do TMDB. Seu arquivo .env deverá ficar nesse formato:
@@ -54,13 +57,13 @@ Agora, basta abrir o terminal no projeto clonado e rodar essas duas linhas, uma 
   $ yarn
   $ npx expo start
 ```
-Após seguir esses passos, você terá acesso ao Foovies, nele, você poderá criar a sua conta e com ela poderá ver informações de filmes, e favorita-los! Também é possível ativar o modo escuro, e alternar entre os idiomas Português e Inglês, na tela de Perfil.
+Após seguir esses passos, você terá acesso ao Ploovies, nele, você poderá criar a sua conta e com ela poderá ver informações de filmes, e favorita-los! Também é possível ativar o modo escuro, e alternar entre os idiomas Português e Inglês, na tela de Perfil.
 
 ####
 
 Caso não tenha interesse em realizar essas etapas e possuir um celular Android, você poderá apontar a câmera dele para o QRCode abaixo e assim baixar a versão .apk do app.
 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/qrplus-code-1682938554069.jpg) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/qrplus-code-1682982011845.jpg) 
 
 ## Preview
 
