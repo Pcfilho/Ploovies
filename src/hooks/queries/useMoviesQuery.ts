@@ -25,7 +25,8 @@ export const useMoviesQuery = () => {
   } = useInfiniteQuery<MovieModel[]>({
     queryKey: ["moviesList"],
     queryFn: ({ pageParam = 1 }) => fetchMoviesList(pageParam, getCurrentLanguage),
-    getNextPageParam: () => page
+    getNextPageParam: () => page,
+    staleTime: Infinity
   });
 
   const nextPageHandler = () => {

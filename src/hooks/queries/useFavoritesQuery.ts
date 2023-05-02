@@ -18,7 +18,7 @@ export const useFavoritesQuery = () => {
   const id = useUserSelector();
   const { isConnected } = useNetInfo();
   const {
-    isLoading,
+    isFetching,
     refetch
   } = useQuery<MovieModel[]>({
     queryKey: [`@Ploovies/favorites/${id}`],
@@ -80,7 +80,7 @@ export const useFavoritesQuery = () => {
 
   return {
     favorites,
-    isLoading,
+    isLoading: isFetching,
     refetch
   }
 }
