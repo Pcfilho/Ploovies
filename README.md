@@ -63,7 +63,7 @@ Após seguir esses passos, você terá acesso ao Ploovies, nele, você poderá c
 
 Caso não tenha interesse em realizar essas etapas e possuir um celular Android, você poderá apontar a câmera dele para o QRCode abaixo e assim baixar a versão .apk do app.
 
-![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/qrplus-code-1682982011845.jpg) 
+![App Screenshot](https://github.com/Pcfilho/Foovies/blob/master/readme-assets/qrplus-code-1683068000690.jpg) 
 
 ## Preview
 
